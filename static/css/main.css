@@ -44,6 +44,7 @@ body {
     font-size: 0.9rem;
     backdrop-filter: blur(5.8px);
     -webkit-backdrop-filter: blur(5.8px);
+    z-index: 99;
 }
 
 .footer p {
@@ -347,4 +348,134 @@ h1, h2 {
     width: 12rem;
     height: auto;
     object-fit: cover;
+}
+
+.projects {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #FF91EC;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+}
+
+.project-list {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 2rem;
+    padding-bottom: 1rem;
+}
+
+.project-card {
+    flex: 0 0 auto;
+    width: 300px;
+    background: rgba(66, 67, 91, 0.45);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.8px);
+    -webkit-backdrop-filter: blur(5.8px);
+    padding: 1rem;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 420px;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-image {
+    width: 100%;
+    height: 35%;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, rgba(255, 145, 236, 0.3), rgba(173, 173, 255, 0.3));
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Project image overrides */
+.project-image.extra-ores {
+    object-position: top;
+}
+
+.project-image.flourish {
+    object-position: top;
+}
+
+.project-image.kawaiipad {
+    object-position: right;
+}
+
+.project-image.goldbach-conjecture {
+    object-fit: contain;
+}
+
+/* End of overrides */
+
+.project-title {
+    font-size: 1.2rem;
+    color: #FF91EC;
+    margin-bottom: 0.5rem;
+}
+
+.project-description {
+    font-size: 0.9rem;
+    color: #9b8bc9;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+    background: rgba(66, 67, 91, 0.3);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.project-link {
+    display: inline-block;
+    background-color: #FF91EC;
+    color: #241829;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+}
+
+.project-link:hover {
+    background-color: #adadff;
+}
+
+.project-list::-webkit-scrollbar {
+    height: 8px;
+}
+
+.project-list::-webkit-scrollbar-track {
+    background: rgba(66, 67, 91, 0.2);
+    border-radius: 4px;
+}
+
+.project-list::-webkit-scrollbar-thumb {
+    background-color: #FF91EC;
+    border-radius: 4px;
+}
+
+.project-list::-webkit-scrollbar-thumb:hover {
+    background-color: #adadff;
 }
