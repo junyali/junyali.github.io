@@ -32,6 +32,34 @@ body {
     user-select: none;
 }
 
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(66, 67, 91, 0.45);
+    color: #9b8bc9;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    backdrop-filter: blur(5.8px);
+    -webkit-backdrop-filter: blur(5.8px);
+}
+
+.footer p {
+    margin: 0;
+}
+
+.footer a {
+    color: #FF91EC;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #adadff;
+}
+
 #particles-js {
     position: fixed;
     top: 0;
