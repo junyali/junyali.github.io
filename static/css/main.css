@@ -255,23 +255,6 @@ h1, h2 {
     color: #FF91EC;
 }
 
-#home {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100vh;
-}
-
-#home h1 {
-    margin-bottom: 1rem;
-}
-
-#home p {
-    max-width: 600px;
-}
-
 .container {
 
 }

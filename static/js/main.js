@@ -1,7 +1,3 @@
-particlesJS.load('particles-js', './particles.json', function() {
-  console.log('particles.js loaded - callback');
-});
-
 document.addEventListener('DOMContentLoaded', function() {
   const navbar = document.querySelector('.navbar');
   let lastScrollTop = 0;
@@ -38,5 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+
+  particlesJS.load('particles-js', '/particles.json', function() {
+    console.log('particles.js loaded - callback');
   });
 });
