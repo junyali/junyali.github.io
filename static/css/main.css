@@ -276,3 +276,54 @@ h1, h2 {
 #home p {
     max-width: 600px;
 }
+
+.container {
+
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 10vh; /* Navbar offset */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.home {
+    background-color: rgba(66, 67, 91, 0.45);
+    backdrop-filter: blur(5.8px);
+    -webkit-backdrop-filter: blur(5.8px);
+    border-radius: 15px;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.home-name {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #FF91EC;
+}
+
+.home-description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #9b8bc9;
+}
+
+.experience {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.experience i {
+    font-size: 2rem;
+    color: #adadff;
+}
