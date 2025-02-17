@@ -1,0 +1,43 @@
+/*
+    Long list of Apple SF font spam coming
+*/
+
+@font-face {
+    font-family: "SFPro";
+    font-weight: 100;
+    src: url("fonts/SF-Pro-Display-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "SFPro";
+    font-weight: 100;
+    src: url("fonts/SF-Pro-Display-Bold.otf") format("opentype");
+}
+
+* { box-sizing: border-box; }
+
+body {
+    background-color: #241829;
+    margin: 0;
+    font-family: "SFPro", Helvetica, Arial, sans-serif;
+    color: #9b8bc9;
+    font-weight: 600;
+    font-size: 1.2rem;
+    display: grid;
+    justify-items: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #241829;
+    background-image: url("");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
