@@ -165,87 +165,6 @@ i:hover, p:hover, h1:hover, h2:hover, h3:hover, span:hover, a:hover {
     color: #FF91EC;
 }
 
-/* Sometimes I wish we can view web pages on mobile the same on desktop :( */
-
-@media screen and (max-width: 768px) {
-    .navbar {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 10px;
-    }
-
-    .navbar-name {
-        flex: 0 1 auto;
-        margin-right: 10px;
-    }
-
-    .navbar-name p {
-        font-size: 0.9rem;
-    }
-
-    .navbar-menu {
-        flex: 1 1 auto;
-        justify-content: flex-end;
-        position: static;
-        transform: none;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    .navbar-menu a {
-        font-size: 0.8rem;
-        margin: 0 5px;
-    }
-
-    .navbar-social {
-        flex: 0 0 auto;
-        margin-left: 10px;
-    }
-
-    .navbar-social i {
-        font-size: 1.2rem;
-    }
-
-    .navbar.shrink {
-        width: 60%;
-        flex-wrap: nowrap;
-    }
-
-    .navbar.shrink .navbar-menu {
-        opacity: 0;
-        visibility: hidden;
-        position: absolute;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .navbar {
-        flex-wrap: nowrap;
-        padding: 5px;
-    }
-
-    .navbar-name p {
-        font-size: 0.8rem;
-    }
-
-    .navbar-menu {
-        justify-content: flex-end;
-    }
-
-    .navbar-menu a {
-        font-size: 0.7rem;
-        margin: 0 3px;
-    }
-
-    .navbar-social i {
-        font-size: 1rem;
-    }
-
-    .navbar.shrink {
-        width: 60%;
-    }
-}
-
 section {
     min-height: 100vh;
     padding: 2rem;
@@ -478,4 +397,258 @@ h1, h2 {
 
 .project-list::-webkit-scrollbar-thumb:hover {
     background-color: #adadff;
+}
+
+/* Sometimes I wish we can view web pages on mobile the same on desktop :( */
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+
+    .container {
+        padding-top: 80px;
+        width: 95%;
+    }
+
+    .navbar {
+        width: 95%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        flex-wrap: wrap;
+    }
+
+    .navbar-name {
+        flex: 0 1 auto;
+        margin-right: 10px;
+    }
+
+    .navbar-name p {
+        font-size: 0.9rem;
+    }
+
+    .navbar-menu {
+        flex: 1 1 auto;
+        justify-content: flex-end;
+        position: static;
+        transform: none;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .navbar-menu a {
+        font-size: 0.8rem;
+        margin: 0 5px;
+    }
+
+    .navbar-social {
+        flex: 0 0 auto;
+        margin-left: 10px;
+    }
+
+    .navbar-social i {
+        font-size: 1.2rem;
+    }
+
+    .navbar.shrink {
+        width: 60%;
+        flex-wrap: nowrap;
+    }
+
+    .navbar.shrink .navbar-menu {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+    }
+
+    .home {
+        flex-direction: column;
+        padding: 20px;
+        width: 100%;
+    }
+
+    .home-content {
+        padding: 0;
+        text-align: center;
+    }
+
+    .home-img {
+        padding: 20px 0 0 0;
+    }
+
+    .home-img img {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .project-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-card {
+        width: 80%;
+        height: auto;
+        min-height: 420px;
+        margin-bottom: 2rem;
+    }
+
+    .project-image {
+        height: 150px;
+    }
+
+    .footer {
+        position: static;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) and (orientation: landscape) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding-top: 70px;
+    }
+
+    .navbar {
+        width: 95%;
+        height: auto;
+        padding: 5px 10px;
+    }
+
+    .navbar-name p {
+        font-size: 1rem;
+    }
+
+    .navbar-menu a {
+        font-size: 0.8rem;
+        margin: 0 5px;
+    }
+
+    .navbar-social i {
+        font-size: 1.2rem;
+    }
+
+    .home {
+        flex-direction: row;
+        padding: 15px;
+        width: 95%;
+    }
+
+    .home-content {
+        padding-right: 15px;
+        text-align: left;
+    }
+
+    .home-img {
+        padding: 0;
+    }
+
+    .home-img img {
+        width: 120px;
+        max-width: 120px;
+    }
+
+    .project-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: stretch;
+    }
+
+    .project-card {
+        width: calc(50% - 1rem);
+        min-height: 350px;
+        margin-bottom: 1rem;
+    }
+
+    .project-image {
+        height: 120px;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding-top: 70px;
+    }
+
+    .navbar {
+        flex-wrap: nowrap;
+        padding: 5px;
+    }
+
+    .navbar-name p {
+        font-size: 1.0rem;
+    }
+
+    .navbar-menu {
+        justify-content: flex-end;
+    }
+
+    .navbar-menu a {
+        font-size: 0.9rem;
+        margin: 0 5px;
+    }
+
+    .navbar-social i {
+        font-size: 1.2rem;
+    }
+
+    .navbar.shrink {
+        width: 60%;
+    }
+
+    .container {
+        padding-top: 15vh;
+    }
+
+    .home-name {
+        font-size: 1.8rem;
+    }
+
+    .home-description {
+        font-size: 1.0rem;
+    }
+
+    .experience i {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .project-card {
+        max-width: 100%;
+    }
+
+    .footer {
+        position: static;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        width: 95%;
+    }
+
+    .project-list {
+        justify-content: center;
+    }
+
+    .project-card {
+        width: calc(50% - 8rem);
+        margin: 0.5rem;
+    }
 }
