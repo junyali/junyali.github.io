@@ -1,0 +1,22 @@
+{
+  "name": "junyali",
+  "short_name": "junyali",
+  "description": "Junyali's Personal Website",
+  "start_url": "./index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FF91EC",
+  "theme_color": "#FF91EC",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
