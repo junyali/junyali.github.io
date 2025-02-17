@@ -19,6 +19,7 @@
 body {
     background-color: #241829;
     margin: 0;
+    padding: 0;
     font-family: "SFPro", Helvetica, Arial, sans-serif;
     color: #9b8bc9;
     font-weight: 600;
@@ -32,12 +33,218 @@ body {
 }
 
 #particles-js {
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    z-index: -1;
     background-color: #241829;
     background-image: url("");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
+}
+
+p {
+    transition: color 0.3s ease;
+}
+
+i:hover, p:hover, h1:hover, h2:hover, h3:hover, span:hover, a:hover {
+    color: #adadff !important;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-50%);
+    width: 98%;
+    max-width: 1200px;
+    min-height: 5vh;
+    height: 5vh;
+    background: rgba(66, 67, 91, 0.45);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.8px);
+    -webkit-backdrop-filter: blur(5.8px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    z-index: 999;
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.navbar-name, .navbar-menu, .navbar-social {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.navbar-name {
+    flex: 1;
+}
+
+.navbar-name p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    text-align: left;
+    line-height: 1;
+}
+
+.navbar.shrink {
+    width: 60%;
+    max-width: 1000px;
+}
+
+.navbar-menu {
+    flex: 2;
+    gap: 20px;
+    position: absolute;
+    justify-content: center;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar-menu a {
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-menu a:hover {
+    color: #FF91EC;
+}
+
+.navbar-social i {
+    flex: 1;
+    text-align: right;
+    font-size: 1.5rem;
+    color: #fff;
+    transition: color 0.3s ease;
+    justify-content: flex-end;
+}
+
+.navbar-social i:hover {
+    color: #FF91EC;
+}
+
+/* Sometimes I wish we can view web pages on mobile the same on desktop :( */
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+    }
+
+    .navbar-name {
+        flex: 0 1 auto;
+        margin-right: 10px;
+    }
+
+    .navbar-name p {
+        font-size: 0.9rem;
+    }
+
+    .navbar-menu {
+        flex: 1 1 auto;
+        justify-content: flex-end;
+        position: static;
+        transform: none;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .navbar-menu a {
+        font-size: 0.8rem;
+        margin: 0 5px;
+    }
+
+    .navbar-social {
+        flex: 0 0 auto;
+        margin-left: 10px;
+    }
+
+    .navbar-social i {
+        font-size: 1.2rem;
+    }
+
+    .navbar.shrink {
+        width: 60%;
+        flex-wrap: nowrap;
+    }
+
+    .navbar.shrink .navbar-menu {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar {
+        flex-wrap: nowrap;
+        padding: 5px;
+    }
+
+    .navbar-name p {
+        font-size: 0.8rem;
+    }
+
+    .navbar-menu {
+        justify-content: flex-end;
+    }
+
+    .navbar-menu a {
+        font-size: 0.7rem;
+        margin: 0 3px;
+    }
+
+    .navbar-social i {
+        font-size: 1rem;
+    }
+
+    .navbar.shrink {
+        width: 60%;
+    }
+}
+
+main {
+    padding-top: 10vh;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+h1, h2 {
+    color: #FF91EC;
+}
+
+#home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+}
+
+#home h1 {
+    margin-bottom: 1rem;
+}
+
+#home p {
+    max-width: 600px;
 }
