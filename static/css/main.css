@@ -299,9 +299,10 @@ h1, h2 {
 
 .project-card {
     flex: 0 0 auto;
-    width: 300px;
+    width: 18rem;
     background: rgba(66, 67, 91, 0.45);
-    border-radius: 10px;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #45475a;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5.8px);
     -webkit-backdrop-filter: blur(5.8px);
@@ -310,7 +311,8 @@ h1, h2 {
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
-    height: 420px;
+    height: 26rem;
+    cursor: pointer;
 }
 
 .project-card:hover {
@@ -359,9 +361,9 @@ h1, h2 {
     color: #9b8bc9;
     margin-bottom: 1rem;
     flex-grow: 1;
-    background: rgba(66, 67, 91, 0.3);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    background: #42435B4C;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     padding: 0.5rem;
     border-radius: 5px;
 }
@@ -635,6 +637,18 @@ h1, h2 {
 
     .footer {
         position: static;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .home-content {
+        margin: initial;
+    }
+}
+
+@media screen and (max-width: 536px) {
+    .home-img {
+        display: none;
     }
 }
 
