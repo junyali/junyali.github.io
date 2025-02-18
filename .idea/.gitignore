@@ -8,5 +8,5 @@
 /dataSources.local.xml
 
 # Gallery
-/gallery/images/
-/gallery/metadata/
+/gallery/images/*
+/gallery/metadata/*
