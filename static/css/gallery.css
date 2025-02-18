@@ -1,0 +1,280 @@
+/*
+    Long list of Apple SF font spam coming
+*/
+
+@font-face {
+    font-family: "SFPro";
+    font-weight: 100;
+    src: url("fonts/SF-Pro-Display-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "SFPro";
+    font-weight: 100;
+    src: url("fonts/SF-Pro-Display-Bold.otf") format("opentype");
+}
+
+* { box-sizing: border-box; }
+
+body {
+    background-color: #241829;
+    margin: 0;
+    padding: 0;
+    font-family: "SFPro", Helvetica, Arial, sans-serif;
+    color: #9b8bc9;
+    font-weight: 600;
+    font-size: 1.2rem;
+    display: grid;
+    justify-items: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(66, 67, 91, 0.45);
+    color: #9b8bc9;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    backdrop-filter: blur(5.8px);
+    -webkit-backdrop-filter: blur(5.8px);
+    z-index: 99;
+}
+
+.footer p {
+    margin: 0;
+}
+
+.footer a {
+    color: #FF91EC;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #adadff;
+}
+
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    background-color: #241829;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    pointer-events: none;
+}
+
+p {
+    transition: color 0.3s ease;
+}
+
+i:hover, p:hover, h1:hover, h2:hover, h3:hover, span:hover, a:hover {
+    color: #adadff !important;
+}
+
+.navbar {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 98%;
+    max-width: 1200px;
+    min-height: 5vh;
+    height: 5vh;
+    background: rgba(66, 67, 91, 0.45);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.8px);
+    -webkit-backdrop-filter: blur(5.8px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    z-index: 999;
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.navbar-name, .navbar-menu, .navbar-social {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.navbar-name {
+    flex: 1;
+}
+
+.navbar-name p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    text-align: left;
+    line-height: 1;
+}
+
+.navbar.shrink {
+    width: 60%;
+    max-width: 1000px;
+}
+
+.navbar-menu {
+    flex: 2;
+    gap: 20px;
+    position: absolute;
+    justify-content: center;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar-menu a {
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-menu a:hover {
+    color: #FF91EC;
+}
+
+.navbar-social i {
+    flex: 1;
+    text-align: right;
+    font-size: 1.5rem;
+    color: #fff;
+    transition: color 0.3s ease;
+    justify-content: flex-end;
+}
+
+.navbar-social i:hover {
+    color: #FF91EC;
+}
+
+section {
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+h1, h2 {
+    color: #FF91EC;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 10vh; /* Navbar offset */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-intro {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.message {
+    background-color: #42435b73;
+    backdrop-filter: blur(5.8px);
+    -webkit-backdrop-filter: blur(5.8px);
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    width: 100%;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+}
+
+.message-content {
+    width: 100%;
+}
+
+
+.message-name {
+    font-size: 2rem;
+    margin-bottom: 5px;
+    color: #FF91EC;
+}
+
+.message-description {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #9b8bc9;
+}
+
+.gallery-content {
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+}
+
+.country-sidebar {
+    width: 12rem;
+    font-size: 1.0rem;
+    background: rgba(66, 67, 91, 0.45);
+    border-radius: 10px;
+    padding: 1rem;
+    position: sticky;
+    height: calc(100vh - 120px);
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.country-sidebar h2 {
+    color: #FF91EC;
+    margin-bottom: 1rem;
+}
+
+.country-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.country-list li {
+    margin-bottom: 0.5rem;
+}
+
+.country-list a {
+    display: flex;
+    align-items: center;
+    color: #9b8bc9;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.country-list a:hover {
+    color: #FF91EC;
+}
+
+.flag {
+    margin-right: 0.5rem;
+    font-size: 1.2em;
+}
+
+.photo-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
