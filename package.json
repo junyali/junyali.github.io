@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@catppuccin/palette": "^1.7.1",
     "typescript": "~5.8.3",
     "vite": "^6.3.5"
   },
