@@ -1,6 +1,20 @@
 import './style.css'
 import { projects, techStack, aboutMe, type ProjectLink } from './projects'
 
+function updateTime(): void {
+	const now = new Date()
+	const timeString = now.toLocaleTimeString("en-GB", {
+		hour12: true,
+		hour: "numeric",
+		minute: "2-digit"
+	})
+
+	const timeElement = document.getElementById("current-time")
+	if (timeElement) {
+        timeElement.textContent = timeString
+    }
+}
+
 function createMainPage(): void {
 	const app = document.querySelector<HTMLDivElement>("#app")
 	if (!app) return
@@ -46,6 +60,9 @@ function createMainPage(): void {
 			</p>
 		</footer>
     `
+
+	updateTime()
+	setInterval(updateTime, 1000)
 }
 
 document.addEventListener('DOMContentLoaded', () => {
