@@ -53,12 +53,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -67,4 +61,12 @@ h1 {
 #app {
   width: 100%;
   min-height: 100vh;
+}
+
+#site-header.scrolled .header-container {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border: 1px solid rgba(var(--color-ctp-surface1), 0.3);
+  background-color: rgba(var(--color-ctp-surface0), 0.95);
+  box-shadow: 0 8px 30px -5px rgba(203, 166, 247, 0.1);
 }

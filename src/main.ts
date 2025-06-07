@@ -1,5 +1,5 @@
 import './style.css'
-import { projects, techStack, aboutMe, type ProjectLink } from './projects'
+import { techStack, aboutMe } from './projects'
 
 function updateTime(): void {
 	const now = new Date()
@@ -15,13 +15,94 @@ function updateTime(): void {
     }
 }
 
+function createHeader(activePage: "home" | "projects" = "home"): string {
+	return `
+		<header id="site-header" class="fixed top-0 w-full z-50 transition-all duration-300 ease-in-out">
+			<div class="header-container w-full mx-auto px-6 py-4 bg-ctp-surface0/80 backdrop-blur-md border-b border-ctp-surface1 transition-all duration-500 ease-out transform-gpu">
+				<div class="flex items-center justify-between">
+					<div class="text-xl font-bold text-ctp-mauve">junya</div>
+					<div class="flex gap-6">
+						<a href="/" class="nav-link ${activePage === "home" ? "text-ctp-mauve" : "text-ctp-text hover:text-ctp-mauve"}">
+							<i class="fas fa-home mr-2"></i>
+							<span>Home</span>
+						</a>
+						<a href="/projects/" class="nav-link ${activePage === "projects" ? "text-ctp-mauve" : "text-ctp-text hover:text-ctp-mauve"}">
+							<i class="fas fa-code mr-2"></i>
+							<span>Projects</span>
+						</a>
+					</div>
+				</div>
+			</div>
+	  </header>
+	`
+}
+
+function setupHeaderScroll(): void {
+	const header = document.getElementById("site-header")
+	const headerContainer = header?.querySelector<HTMLDivElement>(".header-container")
+
+	if (!header || !headerContainer) return
+
+	const expandedClasses = [
+		"w-full", "mx-auto", "px-6", "py-4",
+		"bg-ctp-base/95", "backdrop-blur-md",
+		"border-b", "border-ctp-surface1",
+		"transition-all", "duration-500", "ease-out"
+	]
+
+	const compactClasses = [
+		"w-3/5", "mx-auto", "mt-2", "px-6", "py-2",
+		"bg-ctp-mantle/95", "backdrop-blur-md",
+		"rounded-xl", "shadow-lg",
+		"border", "border-ctp-overlay2/30",
+		"ring-1", "ring-ctp-mauve/20", "ring-offset-0",
+		"transition-all", "duration-500", "ease-out"
+	]
+
+	expandedClasses.forEach(cls => {
+		if (!headerContainer.classList.contains(cls)) {
+			headerContainer.classList.add(cls)
+		}
+	})
+
+	window.addEventListener("scroll", () => {
+		const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+
+		if (scrollTop > 50) {
+			header.classList.add("scrolled")
+
+			expandedClasses.forEach(cls => {
+				headerContainer.classList.remove(cls)
+			})
+			compactClasses.forEach(cls => {
+				if (!headerContainer.classList.contains(cls)) {
+					headerContainer.classList.add(cls)
+				}
+			})
+		} else {
+			header.classList.remove("scrolled")
+
+			compactClasses.forEach(cls => {
+				headerContainer.classList.remove(cls)
+			})
+			expandedClasses.forEach(cls => {
+				if (!headerContainer.classList.contains(cls)) {
+					headerContainer.classList.add(cls)
+				}
+			})
+		}
+	})
+}
+
 function createMainPage(): void {
 	const app = document.querySelector<HTMLDivElement>("#app")
 	if (!app) return
 
 	app.innerHTML = `
     <!-- messy html stuff -->
-	<div class="relative z-10 max-w-6xl mx-auto px-6 py-12">
+    ${createHeader("home")}
+    
+	<div class="relative z-10 w-full mx-auto px-6 pt-24 pb-12">
 		<section class="text-center mb-16">
 			<div class="relative inline-block mb-8">
 				<img src="${aboutMe.image}" 
@@ -49,8 +130,25 @@ function createMainPage(): void {
 				<i class="fas fa-clock"></i>
 				<span id="current-time">fetching my local time</span>
 			</div>
+			
 		</section>
-	
+		<p>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		
+		</p>
 		<footer class="text-center mt-16 pt-8 border-t border-ctp-surface1/30">
 			<p class="text-ctp-subtext0">
 				Made with ❤️ by 
@@ -63,8 +161,11 @@ function createMainPage(): void {
 
 	updateTime()
 	setInterval(updateTime, 1000)
+
+	window.dispatchEvent(new Event('scroll'));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
 	createMainPage()
+	setupHeaderScroll()
 })
