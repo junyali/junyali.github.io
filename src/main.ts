@@ -36,6 +36,15 @@ function createMainPage(): void {
           <span id="current-time">fetching my local time</span>
         </div>
       </section>
+      
+      <footer class="text-center mt-16 pt-8 border-t border-ctp-surface1/30">
+        <p class="text-ctp-subtext0">
+          Made with ❤️ by 
+          <a href="https://github.com/${aboutMe.githubUsername}" target="_blank" rel="noopener noreferrer" class="text-ctp-mauve hover:text-ctp-pink transition-colors duration-200 font-medium">
+            junya
+          </a>
+        </p>
+      </footer>
     `
 }
 
