@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Private assets
+/public/favicons/
+/public/fonts/
