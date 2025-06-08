@@ -95,6 +95,45 @@ function setupHeaderScroll(): void {
 	})
 }
 
+function renderTechStack(): HTMLDivElement {
+	const techStackSection = document.createElement("div")
+	techStackSection.className = "w-full relative overflow-hidden py-4 mb-8 mt-6 bg-ctp-base/50 backdrop-blur-md border-t border-b border-ctp-mauve/20 shadow-lg"
+	techStackSection.classList.add("tech-stack-container")
+
+	const scrollContainer = document.createElement("div")
+	scrollContainer.className = "flex whitespace-nowrap tech-stack-scroll"
+
+	const techItems = techStack.map(tech => {
+		const techItem = document.createElement("div")
+		techItem.className = "inline-flex items-center mx-6 px-4 py-2 rounded-lg bg-ctp-surface0/60 border border-ctp-mauve/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-ctp-mauve/30 hover:bg-ctp-surface1/70"
+
+
+		const icon = document.createElement("i")
+		icon.className = `${tech.icon} text-2xl mr-2`
+		icon.style.color = tech.colour
+
+		const name = document.createElement("span")
+		name.className = "text-ctp-text"
+		name.textContent = tech.name
+
+		techItem.appendChild(icon)
+		techItem.appendChild(name)
+
+		return techItem
+	})
+
+	techItems.forEach(item => scrollContainer.appendChild(item))
+
+	techItems.forEach(item => {
+		const clone = item.cloneNode(true)
+		scrollContainer.appendChild(clone)
+	})
+
+	techStackSection.appendChild(scrollContainer)
+
+	return techStackSection
+}
+
 function createMainPage(): void {
 	const app = document.querySelector<HTMLDivElement>("#app")
 	if (!app) return
@@ -103,7 +142,7 @@ function createMainPage(): void {
     <!-- messy html stuff -->
     ${createHeader("home")}
     
-	<div class="relative z-10 w-full mx-auto px-6 pt-24 pb-12">
+	<div class="relative z-10 w-full mx-auto pt-24 pb-12">
 		<section class="text-center mb-16">
 			<div class="relative inline-block mb-8">
 				<img src="${aboutMe.image}" 
@@ -118,22 +157,16 @@ function createMainPage(): void {
 			<p class="text-xl text-ctp-subtext1 mb-8 max-w-2xl mx-auto">
 				${aboutMe.description}
 			</p>
-	
-			<div class="flex justify-center gap-6 mb-8">
-				${techStack.map(tech => `
-					<i class="${tech.icon} text-3xl text-ctp-text hover:text-ctp-blue transition-colors duration-200 cursor-pointer tech-icon" 
-						title="${tech.name}" 
-						style="color: ${tech.color}"></i>
-				`).join("")}
-			</div>
-	
+			
 			<div class="inline-flex items-center gap-2 bg-ctp-surface0/40 backdrop-blur-sm border border-ctp-surface1/50 rounded-full px-4 py-2 text-ctp-subtext1">
 				<i class="fas fa-clock"></i>
 				<span id="current-time">fetching my local time</span>
 			</div>
 			
+			<div id="tech-stack-container"></div>
+			
 		</section>
-		<p>
+		<p class="px-8">
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -162,6 +195,11 @@ function createMainPage(): void {
 
 	updateTime()
 	setInterval(updateTime, 1000)
+
+	const techStackContainer = document.querySelector("#tech-stack-container")
+	if (techStackContainer) {
+		techStackContainer.appendChild(renderTechStack())
+	}
 
 	window.dispatchEvent(new Event('scroll'));
 }

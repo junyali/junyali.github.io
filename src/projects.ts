@@ -24,12 +24,12 @@ export const projects: Project[] = [
 ]
 
 export const techStack = [
-    { name: "Python", icon: "fab fa-python", color: "#3776ab" },
-    { name: "Lua", icon: "devicon-lua-plain", color: "#2c2d72" },
-    { name: "TypeScript", icon: "devicon-typescript-plain", color: "#294E80" },
-    { name: "Java", icon: "devicon-java-plain", color: "#f89820" },
-    { name: "Visual Basic", icon: "devicon-visualbasic-plain", color: "#004875" },
-    { name: "GDScript", icon: "devicon-godot-plain", color: "#478cbf" },
+    { name: "Python", icon: "fab fa-python", colour: "#3776ab" },
+    { name: "Lua", icon: "devicon-lua-plain", colour: "#2c2d72" },
+    { name: "TypeScript", icon: "devicon-typescript-plain", colour: "#294E80" },
+    { name: "Java", icon: "devicon-java-plain", colour: "#f89820" },
+    { name: "Visual Basic", icon: "devicon-visualbasic-plain", colour: "#004875" },
+    { name: "GDScript", icon: "devicon-godot-plain", colour: "#478cbf" },
 ]
 
 export const aboutMe = {

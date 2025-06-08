@@ -60,7 +60,9 @@ h1 {
 
 #app {
   width: 100%;
+  max-width: 100%;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 #site-header.scrolled .header-container {
@@ -85,26 +87,19 @@ h1 {
   backface-visibility: hidden;
 }
 
-.particle.bg-ctp-mauve {
-  box-shadow: 0 0 15px rgba(203, 166, 247, 0.5);
+.tech-stack-scroll {
+  animation: scroll 60s linear infinite;
 }
 
-.particle.bg-ctp-pink {
-  box-shadow: 0 0 15px rgba(245, 194, 231, 0.5);
+.tech-stack-scroll:hover {
+  animation-play-state: paused;
 }
 
-.particle.bg-ctp-flamingo {
-  box-shadow: 0 0 15px rgba(242, 205, 205, 0.5);
-}
-
-.particle.bg-ctp-rosewater {
-  box-shadow: 0 0 15px rgba(245, 224, 220, 0.5);
-}
-
-.particle.bg-ctp-lavender {
-  box-shadow: 0 0 15px rgba(180, 190, 254, 0.5);
-}
-
-.particle.bg-ctp-blue {
-  box-shadow: 0 0 15px rgba(137, 180, 250, 0.5);
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
