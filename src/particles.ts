@@ -31,7 +31,7 @@ export function createParticlesBackground(): void {
 		{ class: "bg-ctp-blue", opacity: "0.15" }
 	]
 
-	const baseCount = Math.min(window.innerWidth / 40, 50)
+	const baseCount = Math.min(window.innerWidth / 32, 64)
 	const particleCount = isMobile || isReducedMotion ? Math.floor(baseCount / 2) : Math.floor(baseCount)
 
 	const animationQuality = isMobile || isReducedMotion ? 2 : 1
@@ -50,7 +50,7 @@ export function createParticlesBackground(): void {
 		element.className = `absolute ${colourInfo.class} particle`
 		element.style.width = `${size}px`
 		element.style.height = `${size}px`
-		element.style.opacity = colourInfo.opacity;
+		element.style.opacity = colourInfo.opacity
 		element.style.filter = `blur(${Math.random() * 2 + 1}px)`
 		element.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random() * 360}deg)`
 		element.style.willChange = "transform"
@@ -64,66 +64,64 @@ export function createParticlesBackground(): void {
 			size,
 			speedX: (Math.random() - 0.5) * 0.2,
 			speedY: (Math.random() - 0.5) * 0.2,
-            colourClass: colourInfo.class,
-            element,
-            angle: Math.random() * Math.PI * 2,
-            angleSpeed: (Math.random() * 0.001) + 0.0005,
+			colourClass: colourInfo.class,
+			element,
+			angle: Math.random() * Math.PI * 2,
+			angleSpeed: (Math.random() * 0.001) + 0.0005,
 			amplitude: Math.random() * 15 + 5,
 			rotation: Math.random() * 360,
 			rotationSpeed: (Math.random() - 0.5) * 0.05
 		})
+	}
+	
+	let lastTime = 0
 
-		let lastTime = 0
+	function animateParticles(timestamp: number) {
+		if (!lastTime) lastTime = timestamp
+		const deltaTime = timestamp - lastTime
+		lastTime = timestamp
 
-		function animateParticles(timestamp: number) {
-			if (!lastTime) lastTime = timestamp
-			const deltaTime = timestamp - lastTime
-			lastTime = timestamp
-
-			frameSkip = (frameSkip + 1) % animationQuality
-			if (frameSkip !== 0) {
-				requestAnimationFrame(animateParticles)
-				return
-			}
-
-			particles.forEach(particle => {
-				particle.angle += particle.angleSpeed * deltaTime
-				particle.rotation += particle.rotationSpeed * deltaTime
-
-				// trig offsets for wave-like floating (pls work)
-				const offsetX = Math.sin(particle.angle) * particle.amplitude
-				const offsetY = Math.cos(particle.angle * 0.7) * particle.amplitude
-
-				particle.x += particle.speedX * deltaTime * 0.05
-				particle.y += particle.speedY * deltaTime * 0.05
-
-				// boundaries
-				if (particle.x < -particle.size) particle.x = window.innerWidth + particle.size
-				if (particle.x > window.innerWidth + particle.size) particle.x = -particle.size
-				if (particle.y < -particle.size) particle.y = window.innerHeight + particle.size
-				if (particle.y > window.innerHeight + particle.size) particle.y = -particle.size
-
-				const finalX = particle.x + offsetX
-				const finalY = particle.y + offsetY
-
-				particle.element.style.transform = `translate(${finalX}px, ${finalY}px) rotate(${particle.rotation}deg)`
-			})
-
+		frameSkip = (frameSkip + 1) % animationQuality
+		if (frameSkip !== 0) {
 			requestAnimationFrame(animateParticles)
+			return
 		}
 
-		// incase some smartie decides to yeah do that ig
-		window.addEventListener("resize", () => {
-			const width = window.innerWidth
-			const height = window.innerHeight
+		particles.forEach(particle => {
+			particle.angle += particle.angleSpeed * deltaTime
+			particle.rotation += particle.rotationSpeed * deltaTime
 
-			particles.forEach(particle => {
-				if (particle.x > width) particle.x = width - particle.size
-				if (particle.y > height) particle.y = height - particle.size
-			})
+			const offsetX = Math.sin(particle.angle) * particle.amplitude
+			const offsetY = Math.cos(particle.angle * 0.7) * particle.amplitude
+
+			particle.x += particle.speedX * deltaTime * 0.05
+			particle.y += particle.speedY * deltaTime * 0.05
+
+			// boundaries
+			if (particle.x < -particle.size) particle.x = window.innerWidth + particle.size
+			if (particle.x > window.innerWidth + particle.size) particle.x = -particle.size
+			if (particle.y < -particle.size) particle.y = window.innerHeight + particle.size
+			if (particle.y > window.innerHeight + particle.size) particle.y = -particle.size
+
+			const finalX = particle.x + offsetX
+			const finalY = particle.y + offsetY
+
+			particle.element.style.transform = `translate(${finalX}px, ${finalY}px) rotate(${particle.rotation}deg)`
 		})
 
 		requestAnimationFrame(animateParticles)
 	}
 
+	// incase some smartie decides to yeah do that ig
+	window.addEventListener("resize", () => {
+		const width = window.innerWidth
+		const height = window.innerHeight
+
+		particles.forEach(particle => {
+			if (particle.x > width) particle.x = width - particle.size
+			if (particle.y > height) particle.y = height - particle.size
+		})
+	})
+
+	requestAnimationFrame(animateParticles)
 }
