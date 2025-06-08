@@ -112,7 +112,7 @@ function createMainPage(): void {
 				<span class="interactive-text">projects</span>
 			</h1>
 			<p class="text-ctp-subtext0 text-center mb-12 max-w-2xl mx-auto">
-				here's a collection of things i've worked on! click on any project to learn more about it :3
+				here's a collection of things i've worked on! click on any project's links to learn more about it :3
 			</p>
 			${featuredProjects.length > 0 ? `
 				<div class="mb-16">
