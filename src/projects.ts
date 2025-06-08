@@ -68,5 +68,7 @@ export const aboutMe = {
     location: "SE UK",
     typingSpeed: "140",
     typingKeyboard: "ThinkPad L13 2-in-1 Gen 5",
-    typingKeyboardUrl: "https://psref.lenovo.com/Product/ThinkPad/ThinkPad_L13_2_in_1_Gen_5_Intel"
+    typingKeyboardUrl: "https://psref.lenovo.com/Product/ThinkPad/ThinkPad_L13_2_in_1_Gen_5_Intel",
+    slackId: "U082PAFDDS5",
+    contactEmail: "uhhhilladdthisl8r@example.com"
 }

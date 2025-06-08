@@ -257,6 +257,44 @@ function setupExtraInteractivity(): void {
 	})
 }
 
+function setupContactItems(): void {
+	const contactItems = document.querySelectorAll<HTMLElement>(".contact-item")
+
+	contactItems.forEach(item => {
+		const shimmer = document.createElement("div")
+		shimmer.className = "absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition-all duration-1500 ease-in-out"
+		shimmer.style.zIndex = "1"
+
+		item.classList.add("relative", "overflow-hidden", "group")
+		item.prepend(shimmer)
+		item.addEventListener("click", (e: MouseEvent) => {
+			const ripple = document.createElement("div")
+			const rect = item.getBoundingClientRect()
+
+			const x = e.clientX - rect.left
+			const y = e.clientY - rect.top
+
+			ripple.className = "absolute rounded-full bg-white/20 pointer-events-none"
+			ripple.style.width = ripple.style.height = "0px"
+			ripple.style.left = `${x}px`
+			ripple.style.top = `${y}px`
+			ripple.style.transform = "translate(-50%, -50%)"
+
+			item.appendChild(ripple)
+
+			setTimeout(() => {
+				ripple.style.width = ripple.style.height = "300px"
+				ripple.style.opacity = "0"
+				ripple.style.transition = "all 0.6s ease-out"
+
+				setTimeout(() => {
+					ripple.remove()
+				}, 600)
+			}, 10)
+		})
+	})
+}
+
 function getRandomCaffeine(): string {
 	const amount = Math.floor(Math.random() * 601)
 
@@ -340,6 +378,58 @@ function createMainPage(): void {
 			</div>
 			<div class="mt-12 max-w-3xl mx-auto bg-ctp-surface0/40 backdrop-blur-sm border border-ctp-mauve/20 rounded-xl p-6 shadow-lg">
 				<h2 class="text-2xl font-bold text-ctp-text mb-4">
+					<span class="text-ctp-mauve">quick links / </span>
+					<span class="interactive-text">find me on...</span>
+				</h2>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+					<div class="contact-item discord-item p-4 rounded-lg border border-ctp-mauve/20 bg-gradient-to-br from-[#5865F2]/10 to-[#5865F2]/5 hover:to-[#5865F2]/10 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
+						<div class="flex items-center">
+							<div class="contact-icon-wrapper bg-[#5865F2]/20 p-3 rounded-full mr-4">
+								<i class="fab fa-discord text-[#5865F2] text-2xl"></i>
+							</div>
+							<div>
+								<h3 class="font-bold text-ctp-text">Discord</h3>
+								<p class="text-ctp-subtext0">pls ask thru a different contact</p>
+							</div>
+						</div>
+					</div>
+					<div class="contact-item email-item p-4 rounded-lg border border-ctp-mauve/20 bg-gradient-to-br from-ctp-mauve/10 to-ctp-pink/5 hover:from-ctp-mauve/20 hover:to-ctp-pink/10 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
+						<div class="flex items-center">
+							<div class="contact-icon-wrapper bg-ctp-mauve/20 p-3 rounded-full mr-4">
+								<i class="fas fa-envelope text-ctp-mauve text-2xl"></i>
+							</div>
+							<div>
+								<h3 class="font-bold text-ctp-text">Email</h3>
+								<p class="text-ctp-subtext0 hover:text-ctp-pink transition-all duration-300">${aboutMe.contactEmail}</p>
+							</div>
+						</div>
+					</div>
+					<a href="https://hackclub.slack.com/team/${aboutMe.slackId}" target="_blank" rel="noopener noreferrer" class="contact-item slack-item p-4 rounded-lg border border-ctp-mauve/20 bg-gradient-to-br from-[#4A154B]/10 to-[#36C5F0]/5 hover:from-[#4A154B]/20 hover:to-[#36C5F0]/10 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
+						<div class="flex items-center">
+							<div class="contact-icon-wrapper bg-[#4A154B]/20 p-3 rounded-full mr-4">
+								<i class="fab fa-slack text-[#4A154B] text-2xl"></i>
+							</div>
+							<div>
+								<h3 class="font-bold text-ctp-text">Slack on Hack Club</h3>
+								<p class="text-ctp-subtext0">@junya</p>
+							</div>
+						</div>
+					</a>
+					<a href="https://github.com/${aboutMe.githubUsername}" target="_blank" rel="noopener noreferrer" class="contact-item github-item p-4 rounded-lg border border-ctp-mauve/20 bg-gradient-to-br from-[#333]/10 to-[#171515]/5 hover:from-[#333]/20 hover:to-[#171515]/10 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
+						<div class="flex items-center">
+							<div class="contact-icon-wrapper bg-[#333]/20 p-3 rounded-full mr-4">
+								<i class="fab fa-github text-[#333] text-2xl"></i>
+							</div>
+							<div>
+								<h3 class="font-bold text-ctp-text">GitHub</h3>
+								<p class="text-ctp-subtext0">${aboutMe.githubUsername}</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="mt-12 max-w-3xl mx-auto bg-ctp-surface0/40 backdrop-blur-sm border border-ctp-mauve/20 rounded-xl p-6 shadow-lg">
+				<h2 class="text-2xl font-bold text-ctp-text mb-4">
 					<span class="text-ctp-mauve">extra things</span>
 				</h2>
 				<div class="quote-container my-6 px-6 py-4 border-l-4 border-ctp-mauve bg-ctp-surface0/60 rounded-r-lg shadow-inner">
@@ -391,6 +481,7 @@ function createMainPage(): void {
 
 	setupInteractiveText()
 	setupExtraInteractivity()
+	setupContactItems()
 
 	window.dispatchEvent(new Event("scroll"))
 }
