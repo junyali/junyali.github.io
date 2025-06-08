@@ -392,7 +392,7 @@ function createMainPage(): void {
 	setupInteractiveText()
 	setupExtraInteractivity()
 
-	window.dispatchEvent(new Event("scroll"));
+	window.dispatchEvent(new Event("scroll"))
 }
 
 document.addEventListener("DOMContentLoaded", () => {
