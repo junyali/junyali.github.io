@@ -426,6 +426,50 @@ function createMainPage(): void {
 							</div>
 						</div>
 					</a>
+					<a href="https://reddit.com/user/${aboutMe.reddit}" target="_blank" rel="noopener noreferrer" class="contact-item reddit-item p-4 rounded-lg border border-ctp-mauve/20 bg-gradient-to-br from-[#FF4500]/10 to-[#FF4500]/5 hover:from-[#FF4500]/20 hover:to-[#FF4500]/10 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
+						<div class="flex items-center">
+							<div class="contact-icon-wrapper bg-[#FF4500]/20 p-3 rounded-full mr-4">
+								<i class="fab fa-reddit-alien text-[#FF4500] text-2xl"></i>
+							</div>
+							<div>
+								<h3 class="font-bold text-ctp-text">Reddit</h3>
+								<p class="text-ctp-subtext0">u/${aboutMe.reddit}</p>
+							</div>
+						</div>
+					</a>
+					<a href="https://instagram.com/${aboutMe.instagram}" target="_blank" rel="noopener noreferrer" class="contact-item instagram-item p-4 rounded-lg border border-ctp-mauve/20 bg-gradient-to-br from-[#E1306C]/10 to-[#F77737]/5 hover:from-[#E1306C]/20 hover:to-[#F77737]/10 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
+						<div class="flex items-center">
+							<div class="contact-icon-wrapper bg-gradient-to-br from-[#E1306C]/20 to-[#F77737]/20 p-3 rounded-full mr-4">
+								<i class="fab fa-instagram text-[#E1306C] text-2xl"></i>
+							</div>
+							<div>
+								<h3 class="font-bold text-ctp-text">Instagram</h3>
+								<p class="text-ctp-subtext0">@${aboutMe.instagram}</p>
+							</div>
+						</div>
+					</a>
+					<a href="https://steamcommunity.com/id/${aboutMe.steam}" target="_blank" rel="noopener noreferrer" class="contact-item steam-item p-4 rounded-lg border border-ctp-mauve/20 bg-gradient-to-br from-[#171a21]/10 to-[#1b2838]/5 hover:from-[#171a21]/20 hover:to-[#1b2838]/10 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
+						<div class="flex items-center">
+							<div class="contact-icon-wrapper bg-[#171a21]/20 p-3 rounded-full mr-4">
+								<i class="fab fa-steam text-[#171a21] text-2xl"></i>
+							</div>
+							<div>
+								<h3 class="font-bold text-ctp-text">Steam</h3>
+								<p class="text-ctp-subtext0">${aboutMe.steam}</p>
+							</div>
+						</div>
+					</a>
+					<a href="https://${aboutMe.itchio}.itch.io" target="_blank" rel="noopener noreferrer" class="contact-item itchio-item p-4 rounded-lg border border-ctp-mauve/20 bg-gradient-to-br from-[#FA5C5C]/10 to-[#FA5C5C]/5 hover:from-[#FA5C5C]/20 hover:to-[#FA5C5C]/10 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
+						<div class="flex items-center">
+							<div class="contact-icon-wrapper bg-[#FA5C5C]/20 p-3 rounded-full mr-4">
+								<i class="fab fa-itch-io text-[#FA5C5C] text-2xl"></i>
+							</div>
+							<div>
+								<h3 class="font-bold text-ctp-text">itch.io</h3>
+								<p class="text-ctp-subtext0">${aboutMe.itchio}.itch.io</p>
+							</div>
+						</div>
+					</a>
 				</div>
 			</div>
 			<div class="mt-12 max-w-3xl mx-auto bg-ctp-surface0/40 backdrop-blur-sm border border-ctp-mauve/20 rounded-xl p-6 shadow-lg">
