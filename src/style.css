@@ -145,3 +145,29 @@ h1 {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
+.fi {
+  position: relative;
+  display: inline-block;
+  border: 1px solid rgba(88, 91, 112, 0.5);
+  box-shadow: 0 0 8px rgba(203, 166, 247, 0.3);
+  border-radius: 0.125rem;
+  transform: scale(1);
+  transition: all 0.3s ease;
+  margin: 0 0.375rem;
+  vertical-align: middle;
+}
+
+.fi::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right, transparent, rgba(0, 0, 0, 0.1));
+  border-radius: 0.125rem;
+  pointer-events: none;
+}
+
+.fi:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(203, 166, 247, 0.5);
+}
