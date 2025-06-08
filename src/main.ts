@@ -1,5 +1,5 @@
-import './style.css'
-import { techStack, aboutMe } from './projects'
+import "./style.css"
+import { techStack, aboutMe } from "./projects"
 import { createParticlesBackground } from "./particles"
 
 function updateTime(): void {
@@ -298,10 +298,10 @@ function createMainPage(): void {
 
 	setupInteractiveText()
 
-	window.dispatchEvent(new Event('scroll'));
+	window.dispatchEvent(new Event("scroll"));
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
 	createMainPage()
 	setupHeaderScroll()
 	createParticlesBackground()
