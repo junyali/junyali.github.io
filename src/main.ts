@@ -371,7 +371,7 @@ function createMainPage(): void {
 					heya!! i've been programming since 2018 and i love all things tech!
 				</p>
 				<p class="text-ctp-text leading-relaxed">
-					when i'm not coding, you might find playing games or travelling around
+					when i'm not coding, you might find me playing games or travelling around
 				</p>
 				<p class="text-ctp-text leading-relaxed">
 					i can speak english <span class="fi fi-gb"></span> and mandarin <span class="fi fi-cn"></span> natively, and A2 german <span class="fi fi-de"></span> and spanish <span class="fi fi-es"></span>

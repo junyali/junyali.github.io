@@ -162,7 +162,7 @@ export const techStack: techStackItem[] = [
 
 export const aboutMe = {
     name: "junya",
-    description: "friendly programmar that likes making silly things :3",
+    description: "friendly programmer that likes making silly things :3",
     image: "https://ca.slack-edge.com/T0266FRGM-U082PAFDDS5-24254fec2bbc-512",
     githubUsername: "junyali",
     location: "SE UK",
