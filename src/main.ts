@@ -333,10 +333,14 @@ function createMainPage(): void {
     
 	<div class="relative z-10 w-full mx-auto pt-24 pb-12">
 		<section class="text-center mb-16">
-			<div class="relative inline-block mb-8">
-				<img src="${aboutMe.image}" 
-					alt="picture"
-					class="w-32 h-32 rounded-2xl mx-auto border-4 border-ctp-mauve/30 shadow-2xl shadow-ctp-mauve/20">
+			<div class="relative inline-block mb-8 group">
+				<div class="absolute -inset-1 bg-gradient-to-r from-ctp-mauve via-ctp-pink to-ctp-blue rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500 -z-10"></div>
+				<div class="relative">
+					<img src="${aboutMe.image}" 
+						alt="picture"
+						class="w-32 h-32 rounded-2xl mx-auto border-4 border-ctp-mauve/30 shadow-2xl shadow-ctp-mauve/20 transition-all duration-300 cursor-pointer hover:scale-105 z-10">
+					<div class="absolute inset-0 bg-gradient-to-r from-ctp-mauve via-ctp-pink to-ctp-blue opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity duration-500"></div>
+				</div>
 			</div>
 	
 			<h1 class="text-5xl font-bold text-ctp-text mb-4">
