@@ -147,6 +147,83 @@ function renderTechStack(): HTMLDivElement {
 	return techStackSection
 }
 
+function setupInteractiveText(): void {
+	const style = document.createElement("style")
+	style.textContent = `
+		.shadow-glow {
+			text-shadow: 0 0 8px rgba(203, 166, 247, 0.6);
+		}
+	`
+	document.head.appendChild(style)
+
+	const interactiveElements = document.querySelectorAll(".interactive-text")
+
+	interactiveElements.forEach(element => {
+		const typedElement = element as HTMLElement
+		typedElement.classList.add(
+			"relative",
+			"inline-block",
+			"cursor-pointer",
+			"transition-all",
+			"duration-300",
+			"hover:scale-105"
+		)
+
+		const underline = document.createElement("span")
+		underline.classList.add(
+			"absolute",
+			"bottom-0",
+			"left-0",
+			"w-0",
+			"h-0.5",
+			"bg-gradient-to-r",
+			"from-ctp-pink",
+			"via-ctp-mauve",
+			"to-ctp-blue",
+			"transition-all",
+			"duration-300",
+			"group-hover:w-full"
+		)
+
+		const wrapper = document.createElement("span")
+		wrapper.classList.add("group", "inline-block")
+
+		const originalText = element.textContent
+		typedElement.textContent = ""
+
+		typedElement.parentNode?.insertBefore(wrapper, typedElement)
+		wrapper.appendChild(typedElement)
+		typedElement.appendChild(document.createTextNode(originalText || ""))
+		typedElement.appendChild(underline)
+
+		const colours = ["text-ctp-pink", "text-ctp-mauve", "text-ctp-flamingo", "text-ctp-sky", "text-ctp-green", "text-ctp-yellow"]
+		let currentColourIndex = 0
+
+		typedElement.addEventListener("mouseenter", () => {
+			typedElement.classList.add("shadow-glow")
+
+			const interval = setInterval(() => {
+				colours.forEach(colour => element.classList.remove(colour))
+				element.classList.add(colours[currentColourIndex])
+				currentColourIndex = (currentColourIndex + 1) % colours.length
+			}, 300)
+
+			typedElement.dataset.colorInterval = interval.toString()
+		})
+
+		typedElement.addEventListener("mouseleave", () => {
+			typedElement.classList.remove("shadow-glow")
+			if (typedElement.dataset.colorInterval) {
+				clearInterval(parseInt(typedElement.dataset.colorInterval))
+				typedElement.dataset.colorInterval = ""
+			}
+
+			// Remove all color classes
+			colours.forEach(colour => typedElement.classList.remove(colour))
+		})
+	})
+}
+
 function createMainPage(): void {
 	const app = document.querySelector<HTMLDivElement>("#app")
 	if (!app) return
@@ -165,7 +242,7 @@ function createMainPage(): void {
 	
 			<h1 class="text-5xl font-bold text-ctp-text mb-4">
 				<span class="text-ctp-mauve">hello!! i'm </span>
-				<span class="rainbow-text-hover cursor-pointer">${aboutMe.name}</span>
+				<span class="interactive-text">${aboutMe.name}</span>
 			</h1>
 	
 			<p class="text-xl text-ctp-subtext1 mb-8 max-w-2xl mx-auto">
@@ -185,13 +262,19 @@ function createMainPage(): void {
 			<div class="mt-12 max-w-3xl mx-auto bg-ctp-surface0/40 backdrop-blur-sm border border-ctp-mauve/20 rounded-xl p-6 shadow-lg">
 				<h2 class="text-2xl font-bold text-ctp-text mb-4">
 					<span class="text-ctp-mauve">a thing or two </span>
-					<span class="rainbow-text-hover cursor-pointer">about me...</span>
+					<span class="interactive-text">about me...</span>
 				</h2>
-				<p>
-				idk what to write here
-				more lines
-				more lines
-				another line
+				<p class="text-ctp-text leading-relaxed">
+					heya!! i've been programming since 2018 and i love all things tech!
+				</p>
+				<p class="text-ctp-text leading-relaxed">
+					when i'm not coding, you might find playing games or travelling around
+				</p>
+				<p class="text-ctp-text leading-relaxed">
+					i can speak english and mandarin natively, and A2 german and spanish
+				</p>
+				<p class="text-ctp-text leading-relaxed">
+					feel free to get in contact with me, i'd love to chat <3
 				</p>
 			</div>
 		</section>
@@ -212,6 +295,8 @@ function createMainPage(): void {
 	if (techStackContainer) {
 		techStackContainer.appendChild(renderTechStack())
 	}
+
+	setupInteractiveText()
 
 	window.dispatchEvent(new Event('scroll'));
 }
