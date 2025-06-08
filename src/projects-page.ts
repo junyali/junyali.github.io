@@ -34,7 +34,7 @@ function createProjectCard(project: Project): string {
 	}
 
 	const statusText = project.status ? `
-		<span class="px-2 py-0.5 rounded-full text-xs font-medium ${statusColours[project.status]}">
+		<span class="px-2 py-0.5 rounded-full text-xs font-medium ${statusColours[project.status]} ml-2">
 			${project.status}
         </span>
 	` : ""
@@ -44,45 +44,45 @@ function createProjectCard(project: Project): string {
 	` : ""
 
 	const featuredBadge = project.featured? `
-		<div class="absolute top-3 right-3 bg-ctp-mauve/90 text-ctp-base px-2 py-0.5 rounded-full text-xs font-medium shadow-lg">
+		<div class="absolute top-3 right-3 bg-ctp-mauve/90 text-ctp-base px-2 py-0.5 rounded-full text-xs font-medium shadow-lg z-10">
 			<i class="fas fa-star mr-1"></i> featured
 		</div>
 	` : ""
 
 	const links = project.links.map(link => {
 		return `
-			<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 ${getLinkStyling(link.type)} transition-colors duration-200 rounded-lg text-sm flex items-center">
-                <i class="${getLinkIcon(link.type)} mr-2"></i>
+			<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="px-2 py-1 ${getLinkStyling(link.type)} transition-colors duration-200 rounded-lg text-sm flex items-center mr-2 mb-2">
+                <i class="${getLinkIcon(link.type)} mr-1.5"></i>
                 ${link.label}
             </a>
 		`
-	})
+	}).join("")
 
 	const tags = project.tags.map(tag => `
-		<span class="px-2 py-0.5 bg-ctp-surface0/60 rounded-full text-xs">
+		<span class="px-2 py-0.5 bg-ctp-surface0/60 rounded-full text-xs mr-1 mb-1">
 			${tag}
 		</span>
 	`).join("")
 
 	return `
-		<div class="project-card bg-ctp-mantle border border-ctp-surface1/50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translation-y-1 relative ${project.featured ? "featured-project" : ""}">
+		<div class="project-card bg-ctp-mantle border border-ctp-surface1/50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative ${project.featured ? "featured-project" : ""}">
 			${featuredBadge}
 			<div class="aspect-video overflow-hidden bg-ctp-surface0">
 				<img src="${project.image}" alt="${project.imageAlt}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
 			</div>
 			<div class="p-5">
-				<div class="flex items-center mb-2">
+				<div class="flex items-center mb-2 flex-wrap">
 					<h3 class="text-xl font-bold text-ctp-text">${project.title}</h3>
 					${yearText}
+					${statusText}
 				</div>
 				<p class="text-ctp-subtext0 mb-4">${project.description}</p>
 				<div class="flex flexwrap gap-1 mb-1">
 					${tags}
 				</div>
-				<div class="flex items-center justify-between">
+				<div class="flex flex-wrap">
 				    ${links}
 				</div>
-				${statusText}
 			</div>
 		</div>
 	`
@@ -105,7 +105,7 @@ function createMainPage(): void {
     <!-- messy html stuff -->
     ${createHeader("projects")}
     
-	<div class="relative z-10 w-full mx-auto pt-24 pb-12">
+	<div class="relative z-10 w-full mx-auto px-6 pt-24 pb-12 max-w-7xl">
 		<section class="mb-16">
 			<h1 class="text-4xl font-bold text-center mb-2">
 				<span class="text-ctp-mauve">my </span>
@@ -115,20 +115,30 @@ function createMainPage(): void {
 				here's a collection of things i've worked on! click on any project to learn more about it :3
 			</p>
 			${featuredProjects.length > 0 ? `
-				<div class="mb-12">
-					<h2 class="text-2xl font-bold mb-6 flex items-center">
-						<i class="fas fa-star text-ctp-yellow mr-2"></i> featured projects
-					</h2>
-					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				<div class="mb-16">
+					<div class="flex items-center mb-8 border-b border-ctp-surface1/50 pb-2">
+						<div class="bg-ctp-yellow/10 p-2 rounded-lg mr-3">
+							<i class="fas fa-star text-ctp-yellow text-xl"></i>
+						</div>
+						<h2 class="text-2xl font-bold text-ctp-text">
+							featured projects
+						</h2>
+					</div>
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 						${featuredProjects.map(project => createProjectCard(project)).join("")}
 					</div>
 				</div>
 			` : ""}
 			<div>
-				<h2 class="text-2xl font-bold mb-6 flex items-center">
-					<i class="fas fa-star text-ctp-yellow mr-2"></i> projects
-				</h2>
-				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				<div class="flex items-center mb-8 border-b border-ctp-surface1/50 pb-2">
+					<div class="bg-ctp-blue/10 p-2 rounded-lg mr-3">
+						<i class="fas fa-code text-ctp-blue text-xl"></i>
+					</div>
+					<h2 class="text-2xl font-bold text-ctp-text">
+						other projects
+					</h2>
+				</div>
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 					${otherProjects.map(project => createProjectCard(project)).join("")}
 				</div>
 			</div>
