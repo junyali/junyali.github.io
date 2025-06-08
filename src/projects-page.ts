@@ -114,6 +114,24 @@ function createMainPage(): void {
 			<p class="text-ctp-subtext0 text-center mb-12 max-w-2xl mx-auto">
 				here's a collection of things i've worked on! click on any project to learn more about it :3
 			</p>
+			${featuredProjects.length > 0 ? `
+				<div class="mb-12">
+					<h2 class="text-2xl font-bold mb-6 flex items-center">
+						<i class="fas fa-star text-ctp-yellow mr-2"></i> featured projects
+					</h2>
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+						${featuredProjects.map(project => createProjectCard(project)).join("")}
+					</div>
+				</div>
+			` : ""}
+			<div>
+				<h2 class="text-2xl font-bold mb-6 flex items-center">
+					<i class="fas fa-star text-ctp-yellow mr-2"></i> projects
+				</h2>
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+					${otherProjects.map(project => createProjectCard(project)).join("")}
+				</div>
+			</div>
 		</section>
 		<footer class="text-center mt-16 pt-8 border-t border-ctp-surface1/30">
 			<p class="text-ctp-subtext0">
