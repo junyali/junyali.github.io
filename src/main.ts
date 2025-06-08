@@ -151,7 +151,7 @@ function renderTechStack(): HTMLDivElement {
 	return techStackSection
 }
 
-function setupInteractiveText(): void {
+export function setupInteractiveText(): void {
 	const style = document.createElement("style")
 	style.textContent = `
 		.shadow-glow {
