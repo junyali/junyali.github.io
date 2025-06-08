@@ -174,6 +174,9 @@ function createMainPage(): void {
 			<div class="inline-flex items-center gap-2 bg-ctp-surface0/40 backdrop-blur-sm border border-ctp-surface1/50 rounded-full px-4 py-2 text-ctp-subtext1">
 				<i class="fas fa-clock"></i>
 				<span id="current-time">fetching my local time</span>
+				<span class="mx-1"></span>
+				<i class="fas fa-map-marker-alt"></i>
+				<span>${aboutMe.location}</span>
 			</div>
 			
 			<div id="tech-stack-container"></div>
