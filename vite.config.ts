@@ -5,7 +5,13 @@ export default defineConfig({
     base: "/junyali.github.io/",
     build: {
         outDir: "dist",
-        assetsDir: "assets"
+        assetsDir: "assets",
+        rollupOptions: {
+            input: {
+                main: "index.html",
+                projects: "projects/index.html"
+            }
+        }
     },
     plugins: [
         tailwindcss(),
