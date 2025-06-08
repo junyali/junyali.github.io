@@ -1,5 +1,6 @@
 import './style.css'
 import { techStack, aboutMe } from './projects'
+import { createParticlesBackground } from "./particles"
 
 function updateTime(): void {
 	const now = new Date()
@@ -123,7 +124,7 @@ function createMainPage(): void {
 					<i class="${tech.icon} text-3xl text-ctp-text hover:text-ctp-blue transition-colors duration-200 cursor-pointer tech-icon" 
 						title="${tech.name}" 
 						style="color: ${tech.color}"></i>
-				`).join('')}
+				`).join("")}
 			</div>
 	
 			<div class="inline-flex items-center gap-2 bg-ctp-surface0/40 backdrop-blur-sm border border-ctp-surface1/50 rounded-full px-4 py-2 text-ctp-subtext1">
@@ -168,4 +169,5 @@ function createMainPage(): void {
 document.addEventListener('DOMContentLoaded', () => {
 	createMainPage()
 	setupHeaderScroll()
+	createParticlesBackground()
 })
