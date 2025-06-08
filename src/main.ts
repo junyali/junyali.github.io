@@ -271,7 +271,7 @@ function createMainPage(): void {
 					when i'm not coding, you might find playing games or travelling around
 				</p>
 				<p class="text-ctp-text leading-relaxed">
-					i can speak english and mandarin natively, and A2 german and spanish
+					i can speak english <span class="fi fi-gb"></span> and mandarin <span class="fi fi-cn"></span> natively, and A2 german <span class="fi fi-de"></span> and spanish <span class="fi fi-es"></span>
 				</p>
 				<p class="text-ctp-text leading-relaxed">
 					feel free to get in contact with me, i'd love to chat <3

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "flag-icons/css/flag-icons.min.css";
 @theme {
   --color-ctp-base: #1e1e2e;
   --color-ctp-mantle: #181825;
