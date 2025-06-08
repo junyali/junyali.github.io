@@ -107,16 +107,29 @@ function renderTechStack(): HTMLDivElement {
 		const techItem = document.createElement("div")
 		techItem.className = "inline-flex items-center mx-6 px-4 py-2 rounded-lg bg-ctp-surface0/60 border border-ctp-mauve/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:shadow-ctp-mauve/30 hover:bg-ctp-surface1/70"
 
+		if (tech.isSvg) {
+			const icon = document.createElement("img")
+			icon.className = `text-2xl mr-2 max-h-6`
+			icon.src = `${tech.icon}`
+			icon.alt = `${tech.name}`
 
-		const icon = document.createElement("i")
-		icon.className = `${tech.icon} text-2xl mr-2`
-		icon.style.color = tech.colour
+			techItem.appendChild(icon)
+		} else {
+			const hasColoredClass = tech.icon.includes("colored");
+
+			const icon = document.createElement("i")
+			icon.className = `${tech.icon} text-2xl mr-2`
+			if (!hasColoredClass) {
+				icon.style.color = tech.colour
+			}
+
+			techItem.appendChild(icon)
+		}
 
 		const name = document.createElement("span")
 		name.className = "text-ctp-text"
 		name.textContent = tech.name
 
-		techItem.appendChild(icon)
 		techItem.appendChild(name)
 
 		return techItem

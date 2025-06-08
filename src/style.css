@@ -89,6 +89,7 @@ h1 {
 
 .tech-stack-scroll {
   animation: scroll 60s linear infinite;
+  width: max-content;
 }
 
 .tech-stack-scroll:hover {
@@ -100,6 +101,6 @@ h1 {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-50%));
   }
 }
