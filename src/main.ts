@@ -16,6 +16,10 @@ function updateTime(): void {
     }
 }
 
+// editor's note: one day i'll ACTUALLY sort my typescript files out and organise them properly
+// one day maybe..
+// ONE DAY....
+
 function createHeader(activePage: "home" | "projects" = "home"): string {
 	return `
 		<header id="site-header" class="fixed top-0 w-full z-50 transition-all duration-300 ease-in-out">
@@ -115,7 +119,7 @@ function renderTechStack(): HTMLDivElement {
 
 			techItem.appendChild(icon)
 		} else {
-			const hasColoredClass = tech.icon.includes("colored");
+			const hasColoredClass = tech.icon.includes("colored")
 
 			const icon = document.createElement("i")
 			icon.className = `${tech.icon} text-2xl mr-2`
@@ -218,10 +222,67 @@ function setupInteractiveText(): void {
 				typedElement.dataset.colorInterval = ""
 			}
 
-			// Remove all color classes
 			colours.forEach(colour => typedElement.classList.remove(colour))
 		})
 	})
+}
+
+function setupExtraInteractivity(): void {
+	const typingSpeedElements = document.querySelectorAll(".typing-speed-highlight")
+	typingSpeedElements.forEach(element => {
+		const tooltip = document.createElement("span")
+		tooltip.textContent = "sonic if he typed"
+		tooltip.classList.add(
+			"absolute", "hidden", "group-hover:block", "bottom-full", "left-1/2",
+			"transform", "-translate-x-1/2", "px-2", "py-1", "bg-ctp-surface0",
+			"text-ctp-text", "text-xs", "rounded", "shadow-lg", "mb-1",
+			"border", "border-ctp-mauve/30", "whitespace-nowrap", "z-10"
+		)
+
+		const wrapper = document.createElement("span")
+		wrapper.classList.add("group", "relative", "inline-block")
+		element.parentNode?.insertBefore(wrapper, element)
+		wrapper.appendChild(element)
+		wrapper.appendChild(tooltip)
+	})
+
+	const keyboardElements = document.querySelectorAll(".keyboard-highlight")
+	keyboardElements.forEach(element => {
+		element.addEventListener("click", () => {
+			element.classList.add("scale-95", "bg-ctp-mauve/20")
+			setTimeout(() => {
+				element.classList.remove("scale-95", "bg-ctp-mauve/20")
+			}, 200)
+		})
+	})
+}
+
+function getRandomCaffeine(): string {
+	const amount = Math.floor(Math.random() * 601)
+
+	let emoji = "☕"
+	let description = ""
+
+	if (amount === 0) {
+		emoji = "😴"
+		description = " (need more!)"
+	} else if (amount < 100) {
+		emoji = "🥱"
+		description = " (just getting started)"
+	} else if (amount < 300) {
+		emoji = "😊"
+		description = " (feeling good)"
+	} else if (amount < 500) {
+		emoji = "😳"
+		description = " (getting jittery)"
+	} else {
+		emoji = "🤪"
+		description = " (vibrating intensely)"
+	}
+
+	return `
+		<span class="font-bold">caffeine consumed today: </span><span class="caffeine-amount">${amount}mg</span> ${emoji}<span class="text-ctp-overlay0 text-sm">${description}</span>
+	`
 }
 
 function createMainPage(): void {
@@ -277,6 +338,38 @@ function createMainPage(): void {
 					feel free to get in contact with me, i'd love to chat <3
 				</p>
 			</div>
+			<div class="mt-12 max-w-3xl mx-auto bg-ctp-surface0/40 backdrop-blur-sm border border-ctp-mauve/20 rounded-xl p-6 shadow-lg">
+				<h2 class="text-2xl font-bold text-ctp-text mb-4">
+					<span class="text-ctp-mauve">extra things</span>
+				</h2>
+				<div class="quote-container my-6 px-6 py-4 border-l-4 border-ctp-mauve bg-ctp-surface0/60 rounded-r-lg shadow-inner">
+					<p class="quote-text text-ctp-text leading-relaxed">
+						What I cannot create, I do not understand.
+					</p>
+					<p class="quote-attribution text-right text-ctp-subtext0 mt-2">— Richard Feynman</p>
+				</div>
+				<p class="text-ctp-text leading-relaxed" id="caffeine-counter">
+					${getRandomCaffeine()}
+				</p>
+				<p class="text-ctp-text leading-relaxed">
+					<span class="font-bold">best typing speed: </span>
+					<span class="typing-speed-highlight">${aboutMe.typingSpeed}</span>
+					<span class="text-ctp-text">wpm on a</span>
+					<a href="${aboutMe.typingKeyboardUrl}" 
+						target="_blank" 
+						rel="noopener noreferrer" 
+						class="keyboard-highlight inline-block px-2 py-0.5 rounded bg-ctp-surface1/50 border border-ctp-mauve/30 hover:bg-ctp-surface1/80 transition-all cursor-pointer" 
+						title="the keeb i use :3">
+						${aboutMe.typingKeyboard}
+						<i class="fas fa-external-link-alt text-xs ml-1 text-ctp-overlay0"></i>
+					</a>
+				</p>
+				<p class="text-ctp-text leading-relaxed">
+					<span class="font-bold">days since last bug: </span>
+					<span class="inline-block bg-ctp-red/20 text-ctp-red px-2 py-0.5 rounded animate-pulse">0</span>
+					<span class="text-xs text-ctp-overlay0">(this counter seems to be stuck...)</span>
+				</p>
+			</div>
 		</section>
 		<footer class="text-center mt-16 pt-8 border-t border-ctp-surface1/30">
 			<p class="text-ctp-subtext0">
@@ -297,6 +390,7 @@ function createMainPage(): void {
 	}
 
 	setupInteractiveText()
+	setupExtraInteractivity()
 
 	window.dispatchEvent(new Event("scroll"));
 }

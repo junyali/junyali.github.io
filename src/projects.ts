@@ -65,5 +65,8 @@ export const aboutMe = {
     description: "friendly programmar that likes making silly things :3",
     image: "https://ca.slack-edge.com/T0266FRGM-U082PAFDDS5-24254fec2bbc-512",
     githubUsername: "junyali",
-    location: "SE UK"
+    location: "SE UK",
+    typingSpeed: "140",
+    typingKeyboard: "ThinkPad L13 2-in-1 Gen 5",
+    typingKeyboardUrl: "https://psref.lenovo.com/Product/ThinkPad/ThinkPad_L13_2_in_1_Gen_5_Intel"
 }
