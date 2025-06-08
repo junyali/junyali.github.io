@@ -164,7 +164,8 @@ function createMainPage(): void {
 			</div>
 	
 			<h1 class="text-5xl font-bold text-ctp-text mb-4">
-				<span class="text-ctp-mauve">hello!! i'm</span> ${aboutMe.name}
+				<span class="text-ctp-mauve">hello!! i'm </span>
+				<span class="rainbow-text-hover cursor-pointer">${aboutMe.name}</span>
 			</h1>
 	
 			<p class="text-xl text-ctp-subtext1 mb-8 max-w-2xl mx-auto">
@@ -180,6 +181,20 @@ function createMainPage(): void {
 			</div>	
 		</section>
 		<div id="tech-stack-container"></div>
+		<section class="text-left mb-16">
+			<div class="mt-12 max-w-3xl mx-auto bg-ctp-surface0/40 backdrop-blur-sm border border-ctp-mauve/20 rounded-xl p-6 shadow-lg">
+				<h2 class="text-2xl font-bold text-ctp-text mb-4">
+					<span class="text-ctp-mauve">a thing or two </span>
+					<span class="rainbow-text-hover cursor-pointer">about me...</span>
+				</h2>
+				<p>
+				idk what to write here
+				more lines
+				more lines
+				another line
+				</p>
+			</div>
+		</section>
 		<footer class="text-center mt-16 pt-8 border-t border-ctp-surface1/30">
 			<p class="text-ctp-subtext0">
 				Made with ❤️ by 
