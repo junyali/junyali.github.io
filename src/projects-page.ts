@@ -64,10 +64,14 @@ function createProjectCard(project: Project): string {
 		</span>
 	`).join("")
 
+	const featuredClasses = project.featured
+	? "border-ctp-mauve/40 shadow-lg shadow-ctp-mauve/20"
+	: "border-ctp-surface1/50"
+
 	return `
-		<div class="project-card bg-ctp-mantle border border-ctp-surface1/50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative ${project.featured ? "featured-project" : ""}">
+		<div class="project-card h-full flex flex-col bg-ctp-mantle border ${featuredClasses} rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
 			${featuredBadge}
-			<div class="aspect-video overflow-hidden bg-ctp-surface0">
+			<div class="aspect-video relative h-[200px] overflow-hidden bg-ctp-surface0">
 				<img src="${project.image}" alt="${project.imageAlt}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
 			</div>
 			<div class="p-5">
