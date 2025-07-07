@@ -1,4 +1,8 @@
+import { ThemeSwitcher } from "../utils/theme-switcher.ts";
+
 export function createHeader(activePage: "home" | "projects" = "home"): string {
+	const themeSwitcher = new ThemeSwitcher();
+
 	return `
 		<header id="site-header" class="fixed top-0 w-full z-50 transition-all duration-300 ease-in-out">
 			<div class="header-container w-full mx-auto px-6 py-4 bg-ctp-surface0/80 backdrop-blur-md border-b border-ctp-surface1 transition-all duration-500 ease-out transform-gpu">
@@ -13,6 +17,7 @@ export function createHeader(activePage: "home" | "projects" = "home"): string {
 							<i class="fas fa-code mr-2"></i>
 							<span>Projects</span>
 						</a>
+						${themeSwitcher.createThemeButton()}
 					</div>
 				</div>
 			</div>

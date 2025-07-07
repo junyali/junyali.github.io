@@ -1,4 +1,4 @@
-@theme {
+@theme [data-theme="mocha"] {
     --color-ctp-base: #1e1e2e;
     --color-ctp-mantle: #181825;
     --color-ctp-crust: #11111b;
@@ -27,6 +27,35 @@
     --color-ctp-rosewater: #f5e0dc;
 }
 
+[data-theme="latte"] {
+    --color-ctp-base: #eff1f5;
+    --color-ctp-mantle: #e6e9ef;
+    --color-ctp-crust: #dce0e8;
+    --color-ctp-surface0: #ccd0da;
+    --color-ctp-surface1: #bcc0cc;
+    --color-ctp-surface2: #acb0be;
+    --color-ctp-overlay0: #9ca0b0;
+    --color-ctp-overlay1: #8c8fa1;
+    --color-ctp-overlay2: #7c7f93;
+    --color-ctp-subtext0: #6c6f85;
+    --color-ctp-subtext1: #5c5f77;
+    --color-ctp-text: #4c4f69;
+    --color-ctp-lavender: #7287fd;
+    --color-ctp-blue: #1e66f5;
+    --color-ctp-sapphire: #209fb5;
+    --color-ctp-sky: #04a5e5;
+    --color-ctp-teal: #179299;
+    --color-ctp-green: #40a02b;
+    --color-ctp-yellow: #df8e1d;
+    --color-ctp-peach: #fe640b;
+    --color-ctp-maroon: #e64553;
+    --color-ctp-red: #d20f39;
+    --color-ctp-mauve: #8839ef;
+    --color-ctp-pink: #ea76cb;
+    --color-ctp-flamingo: #dd7878;
+    --color-ctp-rosewater: #dc8a78;
+}
+
 @font-face {
     font-family: "SFPro";
     font-weight: 100;
@@ -37,4 +66,8 @@
     font-family: "SFPro";
     font-weight: 100;
     src: url("/public/fonts/SF-Pro-Display-Bold.otf") format("opentype");
+}
+
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
