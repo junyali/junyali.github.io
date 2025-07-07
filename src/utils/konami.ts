@@ -53,7 +53,8 @@ export class Konami {
 		this.sequence = []
 
 		const easterEggs = [
-			() => this.matrixRain()
+			() => this.matrixRain(),
+			() => this.rainbowMode()
 		]
 		const randomEgg = easterEggs[Math.floor(Math.random() * easterEggs.length)]
 		randomEgg()
@@ -118,6 +119,32 @@ export class Konami {
 				message.remove()
 			}, 8000)
 		}, 2000)
+	}
 
+	private rainbowMode(): void {
+		const style = document.createElement("style")
+		style.innerHTML = `
+			@keyframes rainbow-background {
+				0% { filter: hue-rotate(0deg); }
+				100% { filter: hue-rotate(360deg); }
+			}
+			.rainbow-mode * {
+				animation: rainbow-background 2s linear infinite !important;
+			}
+		`
+
+		document.head.appendChild(style)
+		document.body.classList.add("rainbow-mode")
+
+		const notif = document.createElement("div")
+		notif.className = "fixed top-20 right-4 z-[9999] bg-ctp-mauve text-ctp-base px-6 py-3 rounded-lg shadow-lg animate-bounce"
+		notif.textContent = "🌈 RAINBOW MODE ACTIVATED!!! 🌈"
+		document.body.appendChild(notif)
+
+		setTimeout(() => {
+			document.body.classList.remove("rainbow-mode")
+			style.remove()
+			notif.remove()
+		}, 8000)
 	}
 }
