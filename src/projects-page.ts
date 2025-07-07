@@ -4,6 +4,7 @@ import { projects, type Project, type ProjectLink } from "./projects"
 import { createParticlesBackground } from "./particles"
 import { createHeader } from "./components/header.ts";
 import { createFooter } from "./components/footer.ts";
+import { ThemeSwitcher }from "./utils/theme-switcher.ts";
 
 function getLinkIcon(type: ProjectLink["type"]): string {
 	switch (type) {
@@ -162,5 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	createMainPage()
 	setupHeaderScroll()
 	createParticlesBackground()
+
+	const themeSwitcher = new ThemeSwitcher()
+	themeSwitcher.setupEventListeners()
 })
 
