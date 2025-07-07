@@ -148,7 +148,7 @@ export class Konami {
 
 	private showNotification(title: string, subtitle: string): void {
 		const notif = document.createElement("div")
-		notif.className = "fixed bottom-4 right-4 z-[9999] bg-ctp-surface0/40 border-l-2 border-ctp-mauve/50 text-ctp-text px-4 py-3 rounded-lg shadow-lg max-w-md"
+		notif.className = "fixed bottom-4 right-4 z-[10001] bg-ctp-surface0/40 border-l-2 border-ctp-mauve/50 text-ctp-text px-4 py-3 rounded-lg shadow-lg max-w-md"
 		notif.style.backdropFilter = "blur(12px)"
 		notif.style.animation = "slide-in-right 0.5s ease forwards"
 		notif.innerHTML = `
