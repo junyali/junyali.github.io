@@ -54,7 +54,8 @@ export class Konami {
 
 		const easterEggs = [
 			() => this.matrixRain(),
-			() => this.rainbowMode()
+			() => this.rainbowMode(),
+			() => this.catppuccinSwirl()
 		]
 		const randomEgg = easterEggs[Math.floor(Math.random() * easterEggs.length)]
 		randomEgg()
@@ -144,6 +145,46 @@ export class Konami {
 			document.body.classList.remove("rainbow-mode")
 			style.remove()
 		}, 8000)
+	}
+
+	private catppuccinSwirl(): void {
+		const themes = ["latte", "mocha"]
+		let currentIndex = 0
+
+		this.showNotification("🍥 CATPPUCCIN SWIRL 🍥", "meow :3")
+
+		const colourBurst = document.createElement("div")
+		colourBurst.className = "fixed inset-0 z-[9999] pointer-events-none flex items-center justify-center"
+		colourBurst.innerHTML = `
+			<div class="absolute inset-0 flex items-center justify-center">
+				<div class="w-8 h-8 rounded-full bg-ctp-lavender animate-ping opacity-90"></div>
+				<div class="w-16 h-16 rounded-full bg-ctp-blue animate-ping opacity-85 delay-64"></div>
+				<div class="w-24 h-24 rounded-full bg-ctp-sapphire animate-ping opacity-80 delay-128"></div>
+				<div class="w-32 h-32 rounded-full bg-ctp-sky animate-ping opacity-75 delay-192"></div>
+				<div class="w-40 h-40 rounded-full bg-ctp-teal animate-ping opacity-70 delay-256"></div>
+				<div class="w-56 h-56 rounded-full bg-ctp-green animate-ping opacity-65 delay-320"></div>
+				<div class="w-64 h-64 rounded-full bg-ctp-yellow animate-ping opacity-60 delay-384"></div>
+				<div class="w-72 h-72 rounded-full bg-ctp-peach animate-ping opacity-55 delay-448"></div>
+				<div class="w-80 h-80 rounded-full bg-ctp-maroon animate-ping opacity-50 delay-512"></div>
+				<div class="w-88 h-88 rounded-full bg-ctp-red animate-ping opacity-45 delay-576"></div>
+				<div class="w-96 h-96 rounded-full bg-ctp-mauve animate-ping opacity-40 delay-640"></div>
+				<div class="w-104 h-104 rounded-full bg-ctp-pink animate-ping opacity-35 delay-704"></div>
+				<div class="w-112 h-112 rounded-full bg-ctp-flamingo animate-ping opacity-30 delay-768"></div>
+				<div class="w-120 h-120 rounded-full bg-ctp-rosewater animate-ping opacity-25 delay-832"></div>
+			</div>
+		`
+
+		document.body.appendChild(colourBurst)
+
+		const interval = setInterval(() => {
+			document.documentElement.setAttribute("data-theme", themes[currentIndex])
+			currentIndex = (currentIndex + 1) % themes.length
+		}, 500)
+
+		setTimeout(() => {
+			clearInterval(interval)
+			colourBurst.remove()
+		}, 800)
 	}
 
 	private showNotification(title: string, subtitle: string): void {
