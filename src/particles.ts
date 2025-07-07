@@ -11,12 +11,19 @@ interface Particle {
 	amplitude: number
 	rotation: number
 	rotationSpeed: number
+	lastUpdateTime: number
 }
 
 export function createParticlesBackground(): void {
 	// making sure this stuff dont run on potato devices :skull:
 	const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 	const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+	const isLowPerformance = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4
+
+	if (isReducedMotion || (isMobile && isLowPerformance)) {
+		// could probably run on the first iPhone
+		return
+	}
 
 	const particlesContainer = document.createElement("div")
 	particlesContainer.className = "fixed inset-0 z-0 overflow-hidden pointer-events-none"
@@ -31,11 +38,12 @@ export function createParticlesBackground(): void {
 		{ class: "bg-ctp-blue", opacity: "0.15" }
 	]
 
-	const baseCount = Math.min(window.innerWidth / 32, 64)
+	const maxParticles = isMobile ? 16 : 32
+	const baseCount = Math.min(window.innerWidth / 64, maxParticles)
 	const particleCount = isMobile || isReducedMotion ? Math.floor(baseCount / 2) : Math.floor(baseCount)
 
-	const animationQuality = isMobile || isReducedMotion ? 2 : 1
-	let frameSkip = 0
+	const targetFPS = isMobile ? 15 : 30
+	const frameInterval = 1000 / targetFPS
 
 	const particles: Particle[] = []
 
@@ -56,38 +64,54 @@ export function createParticlesBackground(): void {
 		element.style.willChange = "transform"
 		element.style.borderRadius = `${Math.random() * 10}px`
 
+		element.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${Math.random() * 360}deg)`
+		element.style.willChange = "transform"
+		element.style.backfaceVisibility = "hidden"
+
 		particlesContainer.appendChild(element)
 
 		particles.push({
 			x,
 			y,
 			size,
-			speedX: (Math.random() - 0.5) * 0.2,
-			speedY: (Math.random() - 0.5) * 0.2,
+			speedX: (Math.random() - 0.5) * 0.1,
+			speedY: (Math.random() - 0.5) * 0.1,
 			colourClass: colourInfo.class,
 			element,
 			angle: Math.random() * Math.PI * 2,
-			angleSpeed: (Math.random() * 0.001) + 0.0005,
+			angleSpeed: (Math.random() * 0.001) + 0.00025,
 			amplitude: Math.random() * 15 + 5,
 			rotation: Math.random() * 360,
-			rotationSpeed: (Math.random() - 0.5) * 0.05
+			rotationSpeed: (Math.random() - 0.5) * 0.05,
+			lastUpdateTime: 0
 		})
 	}
-	
+
 	let lastTime = 0
+	let frameCount = 0
 
 	function animateParticles(timestamp: number) {
-		if (!lastTime) lastTime = timestamp
-		const deltaTime = timestamp - lastTime
-		lastTime = timestamp
-
-		frameSkip = (frameSkip + 1) % animationQuality
-		if (frameSkip !== 0) {
+		if (timestamp - lastTime < frameInterval) {
 			requestAnimationFrame(animateParticles)
 			return
 		}
 
+		const deltaTime = timestamp - lastTime
+		lastTime = timestamp
+		frameCount++
+
+		if (isMobile && frameCount % 2 !== 0) {
+			requestAnimationFrame(animateParticles)
+			return
+		}
+
+		const updates: { element: HTMLDivElement; transform: string }[] = []
+
 		particles.forEach(particle => {
+			if (timestamp - particle.lastUpdateTime < frameInterval * 2) {
+				return
+			}
+
 			particle.angle += particle.angleSpeed * deltaTime
 			particle.rotation += particle.rotationSpeed * deltaTime
 
@@ -106,9 +130,34 @@ export function createParticlesBackground(): void {
 			const finalX = particle.x + offsetX
 			const finalY = particle.y + offsetY
 
+			updates.push({
+				element: particle.element,
+				transform: `translate3d(${finalX}px, ${finalY}px, 0) rotate(${particle.rotation}deg)`
+			})
+
 			particle.element.style.transform = `translate(${finalX}px, ${finalY}px) rotate(${particle.rotation}deg)`
 		})
 
+		updates.forEach(({ element, transform}) => {
+			element.style.transform = transform
+		})
+
+		requestAnimationFrame(animateParticles)
+	}
+
+	window.addEventListener("beforeunload", () => {
+		particlesContainer.remove()
+	})
+
+	let isVisible = true
+	document.addEventListener("visibilitychange", () => {
+		isVisible = !document.hidden
+		if (isVisible) {
+			requestAnimationFrame(animateParticles)
+		}
+	})
+
+	if (!document.hidden) {
 		requestAnimationFrame(animateParticles)
 	}
 
