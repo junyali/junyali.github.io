@@ -5,6 +5,7 @@ import { createParticlesBackground } from "../utils/particles.ts"
 import { createHeader } from "../components/header.ts";
 import { createFooter } from "../components/footer.ts";
 import { ThemeSwitcher }from "../utils/theme-switcher.ts";
+import { Konami } from "../utils/konami.ts";
 
 function getLinkIcon(type: ProjectLink["type"]): string {
 	switch (type) {
@@ -166,5 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const themeSwitcher = new ThemeSwitcher()
 	themeSwitcher.setupEventListeners()
+
+	new Konami
 })
 

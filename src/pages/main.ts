@@ -4,6 +4,7 @@ import { createParticlesBackground } from "../utils/particles"
 import { createHeader } from "../components/header.ts";
 import { createFooter } from "../components/footer.ts";
 import { ThemeSwitcher }from "../utils/theme-switcher.ts";
+import { Konami } from "../utils/konami.ts";
 
 function updateTime(): void {
 	const now = new Date()
@@ -516,4 +517,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const themeSwitcher = new ThemeSwitcher()
 	themeSwitcher.setupEventListeners()
+
+	new Konami()
 })
