@@ -101,6 +101,8 @@ export class Konami {
 		const interval = setInterval(draw, 33)
 		document.body.appendChild(matrix)
 
+		this.showNotification("👨‍💻 MATRIX MODE 👨‍💻", "welcome to the digital realm")
+
 		setTimeout(() => {
 			const message = document.createElement("div")
 			message.className = "fixed inset-0 z-[10000] flex items-center justify-center pointer-events-none"
@@ -136,15 +138,63 @@ export class Konami {
 		document.head.appendChild(style)
 		document.body.classList.add("rainbow-mode")
 
-		const notif = document.createElement("div")
-		notif.className = "fixed top-20 right-4 z-[9999] bg-ctp-mauve text-ctp-base px-6 py-3 rounded-lg shadow-lg animate-bounce"
-		notif.textContent = "🌈 RAINBOW MODE ACTIVATED!!! 🌈"
-		document.body.appendChild(notif)
+		this.showNotification("🌈 RAINBOW MODE 🌈", "colours ablaze!!")
 
 		setTimeout(() => {
 			document.body.classList.remove("rainbow-mode")
 			style.remove()
-			notif.remove()
 		}, 8000)
+	}
+
+	private showNotification(title: string, subtitle: string): void {
+		const notif = document.createElement("div")
+		notif.className = "fixed bottom-4 right-4 z-[9999] bg-ctp-surface0/40 border-l-2 border-ctp-mauve/50 text-ctp-text px-4 py-3 rounded-lg shadow-lg max-w-md"
+		notif.style.backdropFilter = "blur(12px)"
+		notif.style.animation = "slide-in-right 0.5s ease forwards"
+		notif.innerHTML = `
+			<div class="flex flex-col">
+				<div class="flex items-center gap-x-2 mb-1">
+					<h4 class="text-base font-medium text-ctp-lavender whitespace-nowrap">${title}</h4>
+					<p class="text-sm">${subtitle}</p>
+				</div>
+				<p class="text-xs text-ctp-subtext0/50">psst.. try the sequence again for a different effect 😉</p>
+			</div>
+		`
+
+		const style = document.createElement("style")
+		style.textContent = `
+			@keyframes slide-in-right {
+				from {
+					transform: translateX(100%);
+					opacity: 0;
+				}
+				to {
+					transform: translateX(0);
+					opacity: 1;
+				}
+			}
+			
+			@keyframes slide-out-right {
+				from {
+					transform: translateX(0);
+					opacity: 1;
+				}
+				to {
+					transform: translateX(100%);
+					opacity: 0;
+				}
+			}
+		`
+
+		document.body.appendChild(style)
+		document.body.appendChild(notif)
+
+		setTimeout(() => {
+			notif.style.animation = "slide-out-right 0.5s ease forwards"
+			setTimeout(() => {
+				notif.remove()
+				style.remove()
+			}, 500)
+		}, 7500)
 	}
 }
