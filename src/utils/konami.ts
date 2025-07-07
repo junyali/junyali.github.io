@@ -148,6 +148,7 @@ export class Konami {
 		}, 8000)
 	}
 
+	// @ts-ignore
 	private catppuccinSwirl(): void {
 		const originalTheme = document.documentElement.getAttribute("data-theme") || "mocha"
 		const themes = ["latte", "mocha", "macchiato", "frappe"]
