@@ -1,4 +1,4 @@
-import "./projects-style.css"
+import "./styles/projects-style.css"
 import { setupHeaderScroll, setupInteractiveText } from "./main.ts"
 import { projects, type Project, type ProjectLink } from "./projects"
 import { createParticlesBackground } from "./particles"

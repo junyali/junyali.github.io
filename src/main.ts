@@ -1,4 +1,4 @@
-import "./style.css"
+import "./styles/style.css"
 import { techStack, aboutMe } from "./projects"
 import { createParticlesBackground } from "./particles"
 import { createHeader } from "./components/header.ts";
