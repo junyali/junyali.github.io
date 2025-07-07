@@ -1,6 +1,8 @@
 import "./style.css"
 import { techStack, aboutMe } from "./projects"
 import { createParticlesBackground } from "./particles"
+import { createHeader } from "./components/header.ts";
+import { createFooter } from "./components/footer.ts";
 
 function updateTime(): void {
 	const now = new Date()
@@ -19,28 +21,6 @@ function updateTime(): void {
 // editor's note: one day i'll ACTUALLY sort my typescript files out and organise them properly
 // one day maybe..
 // ONE DAY....
-
-export function createHeader(activePage: "home" | "projects" = "home"): string {
-	return `
-		<header id="site-header" class="fixed top-0 w-full z-50 transition-all duration-300 ease-in-out">
-			<div class="header-container w-full mx-auto px-6 py-4 bg-ctp-surface0/80 backdrop-blur-md border-b border-ctp-surface1 transition-all duration-500 ease-out transform-gpu">
-				<div class="flex items-center justify-between">
-					<div class="text-xl font-bold text-ctp-mauve">junya</div>
-					<div class="flex gap-6">
-						<a href="/" class="nav-link ${activePage === "home" ? "text-ctp-mauve" : "text-ctp-text hover:text-ctp-mauve"}">
-							<i class="fas fa-home mr-2"></i>
-							<span>Home</span>
-						</a>
-						<a href="/projects/" class="nav-link ${activePage === "projects" ? "text-ctp-mauve" : "text-ctp-text hover:text-ctp-mauve"}">
-							<i class="fas fa-code mr-2"></i>
-							<span>Projects</span>
-						</a>
-					</div>
-				</div>
-			</div>
-	  </header>
-	`
-}
 
 export function setupHeaderScroll(): void {
 	const header = document.getElementById("site-header")
@@ -509,35 +489,8 @@ function createMainPage(): void {
 				</p>
 			</div>
 		</section>
-		<footer class="text-center mt-16 pt-8 border-t border-ctp-surface1/30">
-		    <div class="relative max-w-9/10 mx-auto">
-		        <div class="absolute left-0 top-1/2 -translate-y-1/2 text-left">
-		            <div class="flex items-center space-x-1 text-sm">
-		                <a href="https://ctp-webr.ing/junya/previous" class="text-ctp-subtext0 hover:text-ctp-mauve transition-colors">&larr;</a>
-		                <a href="https://ctp-webr.ing/" class="flex items-center text-ctp-subtext0 hover:text-ctp-mauve transition-colors"><img src="/catppuccin.png" alt="Catppuccin" class="h-4 max-h-4 w-auto object-contain mr-1"/><span> webring</span></a>
-		                <a href="https://ctp-webr.ing/junya/next" class="text-ctp-subtext0 hover:text-ctp-mauve transition-colors">&rarr;</a>
-		            </div>
-		        </div>
-				<div class="absolute right-0 top-1/2 -translate-y-1/2 text-right">
-					<a href="https://webring.phthallo.com/member/5" target="_blank" rel="noopener noreferrer" class="text-ctp-subtext0 hover:text-ctp-mauve transition-colors">
-						<iframe 
-							src="https://webring.phthallo.com/api/widgets/5?format=text&style=font-family:'SFPro',system-ui,sans-serif;color:%23cdd6f4;font-size:0.875rem;" 
-							frameborder="0" 
-							scrolling="no" 
-							height="48"
-							loading="lazy"
-							class="overflow-hidden"
-						></iframe>
-					</a>
-				</div>
-		        <p class="text-ctp-subtext0">
-		            Made with ❤️ by 
-		            <a href="https://github.com/${aboutMe.githubUsername}" target="_blank" rel="noopener noreferrer" class="text-ctp-mauve hover:text-ctp-pink transition-colors duration-200 font-medium">
-		                junya
-		            </a>
-		        </p>
-		    </div>
-		</footer>
+		${createFooter()}
+	</div>
     `
 
 	updateTime()
