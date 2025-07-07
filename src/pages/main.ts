@@ -1,9 +1,9 @@
-import "./styles/style.css"
-import { techStack, aboutMe } from "./projects"
-import { createParticlesBackground } from "./particles"
-import { createHeader } from "./components/header.ts";
-import { createFooter } from "./components/footer.ts";
-import { ThemeSwitcher }from "./utils/theme-switcher.ts";
+import ".././styles/style.css"
+import { techStack, aboutMe } from "../data/projects"
+import { createParticlesBackground } from "../utils/particles"
+import { createHeader } from "../components/header.ts";
+import { createFooter } from "../components/footer.ts";
+import { ThemeSwitcher }from "../utils/theme-switcher.ts";
 
 function updateTime(): void {
 	const now = new Date()

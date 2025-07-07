@@ -1,10 +1,10 @@
-import "./styles/projects-style.css"
+import ".././styles/projects-style.css"
 import { setupHeaderScroll, setupInteractiveText } from "./main.ts"
-import { projects, type Project, type ProjectLink } from "./projects"
-import { createParticlesBackground } from "./particles"
-import { createHeader } from "./components/header.ts";
-import { createFooter } from "./components/footer.ts";
-import { ThemeSwitcher }from "./utils/theme-switcher.ts";
+import { projects, type Project, type ProjectLink } from "../data/projects.ts"
+import { createParticlesBackground } from "../utils/particles.ts"
+import { createHeader } from "../components/header.ts";
+import { createFooter } from "../components/footer.ts";
+import { ThemeSwitcher }from "../utils/theme-switcher.ts";
 
 function getLinkIcon(type: ProjectLink["type"]): string {
 	switch (type) {

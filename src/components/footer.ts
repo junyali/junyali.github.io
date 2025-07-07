@@ -1,4 +1,4 @@
-import {aboutMe} from "../projects.ts";
+import {aboutMe} from "../data/projects.ts";
 
 export function createFooter(): string {
 	return `
