@@ -225,6 +225,79 @@ class GalleryManager {
 			}
 		}
 
+		modal.innerHTML = `
+			<div class="relative bg-ctp-base rounded-xl max-w-4xl max-h-[90vh] overflow-auto shadow-2xl border border-ctp-surface1/50 animate-scale-in">
+				<button class="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full transition-all duration-200 hover:scale-110"
+						onclick="galleryManager.closeModal()">
+					<i class="fas fa-times"></i>
+				</button>
+				<div class="flex flex-col lg:flex-row">
+					<div class="lg:w-2/3 bg-black/5">
+						${item.mediaType === "video" ? `
+							<video controls class="w-full h-auto rounded-t-xl lg:rounded-l-xl lg:rounded-tr-none">
+								<source src="${item.cdnUrl}" type="video/mp4">
+								your browser doesn't support videos :(
+							</video>
+						` : `
+							<img    src="${item.cdnUrl}" alt="${item.title}"
+									class="w-full h-auto rounded-t-xl lg:rounded-l-xl lg:rounded-tr-none object-cover">
+						`}
+					</div>
+					<div class="lg:w-1/3 p-6 bg-gradient-to-b from-ctp-base to-ctp-mantle">
+						<div class="flex items-center gap-2 mb-3">
+							<span class="fi fi-${item.country} rounded-sm border border-ctp-overlay0/30"></span>
+							<span class="text-sm text-ctp-mauve font-semibold">${this.getCountryName(item.country)}</span>
+						</div>
+						<h2 class="text-2xl font-bold text-ctp-text mb-2 leading-tight">${item.title}</h2>
+						<p class="text-ctp-subtext0 mb-4 leading-relaxed">${item.description}</p>
+						<div class="space-y-3 text-sm">
+							<div class="flex items-center gap-2 p-2 bg-ctp-surface0/50 rounded-lg">
+								<i class="fas fa-calendar text-ctp-blue w-4"></i>
+								<span class="font-mono">${item.month ? `${item.month}/` : ""}${item.year}</span>
+							</div>
+							<div class="flex items-center gap-2 p-2 bg-ctp-surface0/50 rounded-lg">
+								<i class="fas fa-tag text-ctp-green w-4"></i>
+								<span>${categories.find(category => category.id === item.category)?.name}</span>
+							</div>
+							${item.metadata?.camera ? `
+								<div class="flex items-center gap-2 p-2 bg-ctp-surface0/50 rounded-lg">
+									<i class="fas fa-camera text-ctp-yellow w-4"></i>
+									<span class="font-medium">${item.metadata.camera}</span>
+								</div>
+							` : ""}
+							${item.metadata?.settings ? `
+								<div class="pt-2 border-t border-ctp-surface1/50">
+									<h4 class="font-semibold text-ctp-text mb-2 flex items-center gap-2">
+										<i class="fas fa-cog text-ctp-mauve text-xs"></i>
+										camera info
+									</h4>
+									<div class="grid grid-cols-2 gap-2 text-xs">
+										${item.metadata.settings.aperture ? `<div class="bg-ctp-surface0/30 px-2 py-1 rounded text-center font-mono">f/${item.metadata.settings.aperture}</div>` : ""}
+										${item.metadata.settings.shutterSpeed ? `<div class="bg-ctp-surface0/30 px-2 py-1 rounded text-center font-mono">f/${item.metadata.settings.shutterSpeed}</div>` : ""}
+										${item.metadata.settings.iso ? `<div class="bg-ctp-surface0/30 px-2 py-1 rounded text-center font-mono">f/${item.metadata.settings.iso}</div>` : ""}
+										${item.metadata.settings.focalLength ? `<div class="bg-ctp-surface0/30 px-2 py-1 rounded text-center font-mono">f/${item.metadata.settings.focalLength}</div>` : ""}
+									</div>
+								</div>
+							` : ""}
+						</div>
+						<div class="flex flex-wrap gap-1 mt-4 pt-4 border-t border-ctp-surface1/50">
+							${item.tags.map(tag => `
+								<span class="px-2 py-1 bg-ctp-surface0/60 hover:bg-ctp-mauve/20 text-ctp-text rounded-full text-xs transition-colors duration-200 cursor-default border border-ctp-surface1/30">
+									${tag}
+								</span>
+							`).join("")}
+						</div>
+					</div>
+				</div>
+			</div>
+		`
+
+		document.body.appendChild(modal)
+	}
+
+	openModalById(itemId: string): void {
+		const item = galleryItems.find(i => i.id === itemId)
+		if (item) this.openModal(item)
 	}
 }
 
