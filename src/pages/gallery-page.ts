@@ -154,7 +154,7 @@ class GalleryManager {
 		if (this.state.filteredItems.length === 0) {
 			gridContainer.innerHTML = `
 				<div class="col-span-full text-center py-16 animate-fade-in">
-					<div class="animated-bounce">
+					<div class="animated-bounce mb-4">
 						<i class="fas fa-images text-6xl text-ctp-overlay0 mb-4"></i>
 					</div>
 					<h3 class="text-xl font-semibold text-ctp-text mb-2">emptiness...</h3>
@@ -169,7 +169,7 @@ class GalleryManager {
 
 		gridContainer.innerHTML = this.state.filteredItems.map((item, index) => `
 			<div 	class="cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-ctp-mauve/20 opacity-0 translate-y-5"
-					onclick="galleryManager.openModal('${item.id}')"
+					onclick="galleryManager.openModalById('${item.id}')"
 					style="animation-delay: ${index * 50}ms">
 				<div class="relative overflow-hidden rounded-lg bg-ctp-surface0 shadow-lg border border-ctp-surface1/30">
 					<div class="aspect-square relative group">
@@ -273,9 +273,9 @@ class GalleryManager {
 									</h4>
 									<div class="grid grid-cols-2 gap-2 text-xs">
 										${item.metadata.settings.aperture ? `<div class="bg-ctp-surface0/30 px-2 py-1 rounded text-center font-mono">f/${item.metadata.settings.aperture}</div>` : ""}
-										${item.metadata.settings.shutterSpeed ? `<div class="bg-ctp-surface0/30 px-2 py-1 rounded text-center font-mono">f/${item.metadata.settings.shutterSpeed}</div>` : ""}
-										${item.metadata.settings.iso ? `<div class="bg-ctp-surface0/30 px-2 py-1 rounded text-center font-mono">f/${item.metadata.settings.iso}</div>` : ""}
-										${item.metadata.settings.focalLength ? `<div class="bg-ctp-surface0/30 px-2 py-1 rounded text-center font-mono">f/${item.metadata.settings.focalLength}</div>` : ""}
+										${item.metadata.settings.shutterSpeed ? `<div class="bg-ctp-surface0/30 px-2 py-1 rounded text-center font-mono">${item.metadata.settings.shutterSpeed}</div>` : ""}
+										${item.metadata.settings.iso ? `<div class="bg-ctp-surface0/30 px-2 py-1 rounded text-center font-mono">${item.metadata.settings.iso}</div>` : ""}
+										${item.metadata.settings.focalLength ? `<div class="bg-ctp-surface0/30 px-2 py-1 rounded text-center font-mono">${item.metadata.settings.focalLength}</div>` : ""}
 									</div>
 								</div>
 							` : ""}

@@ -11,7 +11,7 @@ export interface CameraMetadata {
 		focalLength?: string
 	}
 	location?: {
-		coordinates?: { late: number; lng: number }
+		coordinates?: { lat: number; lng: number }
 		altitude?: string
 	}
 }
