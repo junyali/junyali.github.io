@@ -168,11 +168,11 @@ class GalleryManager {
 		}
 
 		gridContainer.innerHTML = this.state.filteredItems.map((item, index) => `
-			<div 	class="cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-ctp-mauve/20 opacity-0 translate-y-5"
+			<div 	class="cursor-pointer transform transition-transform duration-500 ease-out hover:scale-105 hover:shadow-xl hover:shadow-ctp-mauve/20 opacity-0 translate-y-5"
 					onclick="galleryManager.openModalById('${item.id}')"
 					style="animation-delay: ${index * 50}ms">
-				<div class="relative overflow-hidden rounded-lg bg-ctp-surface0 shadow-lg border border-ctp-surface1/30">
-					<div class="aspect-square relative group">
+				<div class="relative overflow-hidden rounded-lg bg-ctp-surface0 shadow-lg border border-ctp-surface1/30 transition-all duration-500 ease-out hover:border-ctp-mauve/50">
+					<div class="aspect-square relative group bg-gradient-to-br from-ctp-mauve/10 via-ctp-pink/5 to-ctp-blue/10">
 						${item.mediaType === "video" ? `
 							<div class="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm z-10 group-hover:bg-black/10 transition-all duration-300">
 								<div class="bg-white/20 rounded-full p-3 backdrop-blur-sm">
@@ -182,7 +182,7 @@ class GalleryManager {
 						` : ""}
 						<img 	src="${item.cdnUrl}"
 								alt="${item.title}"
-								class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+								class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
 								loading="lazy" />
 					</div>
 					<div class="p-3 bg-gradient-to-b from-ctp-surface0 to-ctp-surface0/80">
@@ -226,13 +226,13 @@ class GalleryManager {
 		}
 
 		modal.innerHTML = `
-			<div class="relative bg-ctp-base rounded-xl max-w-4xl max-h-[90vh] overflow-auto shadow-2xl border border-ctp-surface1/50 animate-scale-in">
+			<div class="relative bg-ctp-base rounded-xl max-w-6xl max-h-[95vh] overflow-auto shadow-2xl border border-ctp-surface1/50 animate-scale-in">
 				<button class="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full transition-all duration-200 hover:scale-110"
 						onclick="galleryManager.closeModal()">
 					<i class="fas fa-times"></i>
 				</button>
 				<div class="flex flex-col lg:flex-row">
-					<div class="lg:w-2/3 bg-black/5">
+					<div class="lg:w-2/3 bg-gradient-to-br from-ctp-surface0/20 via-ctp-mauve/5 to-ctp-pink/10 p-4">
 						${item.mediaType === "video" ? `
 							<video controls class="w-full h-auto rounded-t-xl lg:rounded-l-xl lg:rounded-tr-none">
 								<source src="${item.cdnUrl}" type="video/mp4">
@@ -366,6 +366,9 @@ function createGalleryPage(): void {
 								`).join("")}
 							</div>
 						</div>
+						<div class="flex justify-between items-center mt-4 pt-4 border-t border-ctp-surface1">
+							<span id="results-count" class="text-xs text-ctp-overlay0"></span>
+						</div>
 					</div>
 				</section>
 				<section class="mb-16">
@@ -378,6 +381,17 @@ function createGalleryPage(): void {
 	`
 
 	window.galleryManager = new GalleryManager()
+
+	const searchInput = document.getElementById("gallery-search") as HTMLInputElement
+	if (searchInput) {
+		let searchTimeout: number
+		searchInput.addEventListener("input", (e) => {
+			clearTimeout(searchTimeout)
+			searchTimeout = window.setTimeout(() => {
+				window.galleryManager.setSearchQuery((e.target as HTMLInputElement).value)
+			}, 300) // Debounce search
+		})
+	}
 
 	setupInteractiveText()
 	window.dispatchEvent(new Event("scroll"))

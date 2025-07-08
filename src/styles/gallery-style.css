@@ -79,3 +79,9 @@
 .animate-scale-in {
 	animation: scale-in 0.3s ease-out;
 }
+
+.category-filter.active, .country-filter.active {
+	background-color: rgb(var(--color-ctp-mauve));
+	color: rgb(var(--color-ctp-base));
+	border-color: rgb(var(--color-ctp-mauve));
+}
