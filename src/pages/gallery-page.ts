@@ -27,6 +27,17 @@ function createGalleryPage(): void {
 						explore my travels around the world :3
 					</p>
 					<div class="bg-ctp-surface0/40 backdrop-blur-sm border border-ctp-mauve/20 rounded-xl p-6 mb-8">
+						<div class="flex flex-col lg:flex-row gap-4 mb-4">
+							<div class="flex-1">
+								<input  type="text"
+										id="gallery-search"
+										placeholder="filter by..."
+										class="w-full px-4 py-2 bg-ctp-surface1 border border-ctp-surface2 rounded-lg text-ctp-text placeholder-ctp-overlay0 focus:outline-none focus:border-ctp-mauve transition-colors">
+							</div>
+							<button class="px-4 py-2 bg-ctp-surface1 hover:bg-ctp-surface2 text-ctp-text rounded-lg transition-colors">
+								<i class="fas fa-times mr-2"></i>clear
+							</button>
+						</div>
 						<div class="mb-4">
 							<h3 class="text-sm font-medium text-ctp-text mb-2 flex items-center gap-2">
 								<i class="fas fa-layer-group text-ctp-mauve"></i>
