@@ -4,7 +4,8 @@ import {
 	categories,
 	visitedCountries,
 	galleryItems,
-	type GalleryItem
+	type GalleryItem,
+	type Category
 } from "../data/gallery.ts"
 import { createHeader } from "../components/header.ts"
 import { createFooter } from "../components/footer.ts"
@@ -59,11 +60,72 @@ class GalleryManager {
 
 		this.state.filteredItems = filtered
 		this.renderGalleryGrid()
+		this.updateResultsCount()
 	}
 
 	private getCountryName(countryCode: string): string {
 		const country = visitedCountries.find(country => country.code === countryCode)
 		return country?.name || countryCode
+	}
+
+	setCountryFilter(countryCode: string | null): void {
+		this.state.selectedCountry = countryCode
+		this.filterItems()
+		this.updateActiveStates()
+	}
+
+	setCategoryFilter(category: string | null): void {
+		this.state.selectedCategory = category as Category | null
+		this.filterItems()
+		this.updateActiveStates()
+	}
+
+	setSearchQuery(query: string): void {
+		this.state.searchQuery = query
+		this.filterItems()
+	}
+
+	clearAllFilters(): void {
+		this.state.selectedCountry = null
+		this.state.selectedCategory = null
+		this.state.searchQuery = ""
+
+		const searchInput = document.getElementById("gallery-search") as HTMLInputElement
+		if (searchInput) {
+			searchInput.value = ""
+		}
+
+		this.filterItems()
+		this.updateActiveStates()
+	}
+
+	private updateActiveStates(): void {
+		document.querySelectorAll(".country-filter").forEach(button => {
+			const countryCode = button.getAttribute("data-country")
+			if (countryCode === this.state.selectedCountry) {
+				button.classList.add("active")
+			} else {
+				button.classList.remove("active")
+			}
+		})
+
+		document.querySelectorAll(".category-filter").forEach(button => {
+			const category = button.getAttribute("data-category") as Category
+			if (category === this.state.selectedCategory) {
+				button.classList.add("active")
+			} else {
+				button.classList.remove("active")
+			}
+		})
+	}
+
+	private updateResultsCount(): void {
+		const resultsElement = document.getElementById("results-count")
+		if (resultsElement) {
+			const count = this.state.filteredItems.length
+			const total = galleryItems.length
+			resultsElement.textContent = `showing ${count} of ${total} results`
+		}
 	}
 
 	// @ts-ignore shhhhhh
@@ -108,7 +170,8 @@ function createGalleryPage(): void {
 										placeholder="filter by..."
 										class="w-full px-4 py-2 bg-ctp-surface1 border border-ctp-surface2 rounded-lg text-ctp-text placeholder-ctp-overlay0 focus:outline-none focus:border-ctp-mauve transition-colors">
 							</div>
-							<button class="px-4 py-2 bg-ctp-surface1 hover:bg-ctp-surface2 text-ctp-text rounded-lg transition-colors">
+							<button onclick="galleryManager.clearAllFilters()"
+									class="px-4 py-2 bg-ctp-surface1 hover:bg-ctp-surface2 text-ctp-text rounded-lg transition-colors">
 								<i class="fas fa-times mr-2"></i>clear
 							</button>
 						</div>
@@ -119,21 +182,23 @@ function createGalleryPage(): void {
 							</h3>
 							<div class="flex flex-wrap gap-2">
 								${categories.map(category => `
-									<button class="category-filter px-3 py-1.5 bg-ctp-surface1 hover:bg-ctp-mauve text-ctp-text hover:text-ctp-base rounded-lg transition-all duration-200 text-sm border border-ctp-surface2/50 hover:border-ctp-mauve hover:scale-105 transform"
-											data-category="${category.id}">
+									<button class="category-filter cursor-pointer px-3 py-1.5 bg-ctp-surface1 hover:bg-ctp-mauve text-ctp-text hover:text-ctp-base rounded-lg transition-all duration-200 text-sm border border-ctp-surface2/50 hover:border-ctp-mauve hover:scale-105 transform"
+											data-category="${category.id}"
+											onclick="galleryManager.setCategoryFilter('${category.id}')">
 										<i class="${category.icon} mr-1.5"></i>${category.name}
 								`).join("")}
 							</div>
 						</div>
 						<div>
-							<h3 class="txt-sm font-medium text-ctp-text mb-2 flex items-center gap-2">
+							<h3 class="text-sm font-medium text-ctp-text mb-2 flex items-center gap-2">
 								<i class="fas fa-globe text-ctp-blue"></i>
 								Visited Countries
 							</h3>
 							<div class="flex flex-wrap gap-2">
 								${visitedCountries.map(country => `
-									<button class="country-filter px-3 py-1.5 bg-ctp-surface1 hover:bg-ctp-mauve text-ctp-text hover:text-ctp-base rounded-lg transition-all duration-200 text-sm flex items-center broder border-ctp-surface2/50 hover:border-ctp-mauve hover:scale-105 transform"
-											data-country="${country.code}">
+									<button class="country-filter cursor-pointer px-3 py-1.5 bg-ctp-surface1 hover:bg-ctp-mauve text-ctp-text hover:text-ctp-base rounded-lg transition-all duration-200 text-sm flex items-center border border-ctp-surface2/50 hover:border-ctp-mauve hover:scale-105 transform"
+											data-country="${country.code}"
+											onclick="galleryManager.setCountryFilter('${country.code}')">
 										<span class="fi fi-${country.code} mr-2 rounded-sm border border-ctp-overlay0/30"></span>${country.name}
 									</button>
 								`).join("")}
