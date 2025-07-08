@@ -1,6 +1,21 @@
 export type MediaType = "photo" | "video"
 export type Category = "photos" | "transport" | "food"
 
+export interface CameraMetadata {
+	camera?: string
+	lens?: string
+	settings?: {
+		aperture?: string
+		shutterSpeed?: string
+		iso?: number
+		focalLength?: string
+	}
+	location?: {
+		coordinates?: { late: number; lng: number }
+		altitude?: string
+	}
+}
+
 export interface GalleryItem {
 	id: string
 	title: string
@@ -12,6 +27,7 @@ export interface GalleryItem {
 	year: number
 	month?: number
 	tags: string[]
+	metadata?: CameraMetadata
 }
 
 export interface Country {
@@ -33,4 +49,29 @@ export const visitedCountries: Country[] = [
 	{ code: "sa", name: "Saudi Arabia" },
 	{ code: "cn", name: "China" },
 	{ code: "jp", name: "Japan" }
+]
+
+export const categories: { id: Category; name: string; icon: string; description: string }[] = [
+	{
+		id: "photos",
+		name: "Photos",
+		icon: "fas fa-camera-retro",
+		description: "generic stuff"
+	},
+	{
+		id: "transport",
+		name: "Transport",
+		icon: "fas fa-plane",
+		description: "planes and trains! takeoffs + landings included :3"
+	},
+	{
+		id: "food",
+		name: "Food",
+		icon: "fas fa-utensils",
+		description: "NOM NOM!!"
+	}
+]
+
+export const galleryItems: GalleryItem[] = [
+	// tba
 ]

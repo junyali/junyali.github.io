@@ -1,6 +1,7 @@
 import "../styles/gallery-style.css"
 import { setupHeaderScroll, setupInteractiveText } from "./main.ts"
 import {
+	categories,
 	visitedCountries
 } from "../data/gallery.ts"
 import { createHeader } from "../components/header.ts"
@@ -26,6 +27,19 @@ function createGalleryPage(): void {
 						explore my travels around the world :3
 					</p>
 					<div class="bg-ctp-surface0/40 backdrop-blur-sm border border-ctp-mauve/20 rounded-xl p-6 mb-8">
+						<div class="mb-4">
+							<h3 class="text-sm font-medium text-ctp-text mb-2 flex items-center gap-2">
+								<i class="fas fa-layer-group text-ctp-mauve"></i>
+								Categories
+							</h3>
+							<div class="flex flex-wrap gap-2">
+								${categories.map(category => `
+									<button class="category-filter px-3 py-1.5 bg-ctp-surface1 hover:bg-ctp-mauve text-ctp-text hover:text-ctp-base rounded-lg transition-all duration-200 text-sm border border-ctp-surface2/50 hover:border-ctp-mauve hover:scale-105 transform"
+											data-category="${category.id}">
+										<i class="${category.icon} mr-1.5"></i>${category.name}
+								`).join("")}
+							</div>
+						</div>
 						<div>
 							<h3 class="txt-sm font-medium text-ctp-text mb-2 flex items-center gap-2">
 								<i class="fas fa-globe text-ctp-blue"></i>
