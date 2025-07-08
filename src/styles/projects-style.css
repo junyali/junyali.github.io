@@ -2,61 +2,61 @@
 @import "./themes.css";
 
 :root {
-    font-family: "SFPro", system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
+	font-family: "SFPro", system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
 
-    color-scheme: light dark;
+	color-scheme: light dark;
 
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
-    font-size: 3.2em;
-    line-height: 1.1;
+	font-size: 3.2em;
+	line-height: 1.1;
 }
 
 #app {
-    width: 100%;
-    max-width: 100%;
-    min-height: 100vh;
-    overflow-x: hidden;
+	width: 100%;
+	max-width: 100%;
+	min-height: 100vh;
+	overflow-x: hidden;
 }
 
 #site-header.scrolled .header-container {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    border: 1px solid rgba(var(--color-ctp-surface1), 0.3);
-    background-color: rgba(var(--color-ctp-surface0), 0.95);
-    box-shadow: 0 8px 30px -5px rgba(203, 166, 247, 0.1);
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+	border: 1px solid rgba(var(--color-ctp-surface1), 0.3);
+	background-color: rgba(var(--color-ctp-surface0), 0.95);
+	box-shadow: 0 8px 30px -5px rgba(203, 166, 247, 0.1);
 }
 
 @keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
+	0%, 100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
 }
 
 .particle {
-    will-change: transform;
-    backface-visibility: hidden;
+	will-change: transform;
+	backface-visibility: hidden;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 .project-card:nth-child(1) { animation-delay: 0.1s; }
