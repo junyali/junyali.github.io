@@ -1,6 +1,6 @@
 import { ThemeSwitcher } from "../utils/theme-switcher.ts";
 
-export function createHeader(activePage: "home" | "projects" = "home"): string {
+export function createHeader(activePage: "home" | "projects" | "gallery" = "home"): string {
 	const themeSwitcher = new ThemeSwitcher();
 
 	return `
@@ -16,6 +16,10 @@ export function createHeader(activePage: "home" | "projects" = "home"): string {
 						<a href="/projects/" class="nav-link ${activePage === "projects" ? "text-ctp-mauve" : "text-ctp-text hover:text-ctp-mauve"}">
 							<i class="fas fa-code mr-2"></i>
 							<span>Projects</span>
+						</a>
+						<a href="/gallery/" class="nav-link ${activePage === "gallery" ? "text-ctp-mauve" : "text-ctp-text hover:text-ctp-mauve"}">
+							<i class="fas fa-photo-film mr-2"></i>
+							<span>Gallery</span>
 						</a>
 						${themeSwitcher.createThemeButton()}
 					</div>
