@@ -151,7 +151,62 @@ class GalleryManager {
 			return
 		}
 
-		// tba
+		if (this.state.filteredItems.length === 0) {
+			gridContainer.innerHTML = `
+				<div class="col-span-full text-center py-16 animate-fade-in">
+					<div class="animated-bounce">
+						<i class="fas fa-images text-6xl text-ctp-overlay0 mb-4"></i>
+					</div>
+					<h3 class="text-xl font-semibold text-ctp-text mb-2">emptiness...</h3>
+					<button onclick="galleryManager.clearAllFilters()"
+							class="px-4 py-2 bg-ctp-mauve hover:bg-ctp-pink text-ctp-base rounded-lg transition-colors duration-200 hover:scale-105 transform">
+						clear all filters
+					</button>
+				</div>
+			`
+			return
+		}
+
+		gridContainer.innerHTML = this.state.filteredItems.map((item, index) => `
+			<div 	class="cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-ctp-mauve/20 opacity-0 translate-y-5"
+					onclick="galleryManager.openModal('${item.id}')"
+					style="animation-delay: ${index * 50}ms">
+				<div class="relative overflow-hidden rounded-lg bg-ctp-surface0 shadow-lg border border-ctp-surface1/30">
+					<div class="aspect-square relative group">
+						${item.mediaType === "video" ? `
+							<div class="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm z-10 group-hover:bg-black/10 transition-all duration-300">
+								<div class="bg-white/20 rounded-full p-3 backdrop-blur-sm">
+									<i class="fas fa-play text-white text-xl"></i>
+								</div>
+							</div>
+						` : ""}
+						<img 	src="${item.cdnUrl}"
+								alt="${item.title}"
+								class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+								loading="lazy" />
+					</div>
+					<div class="p-3 bg-gradient-to-b from-ctp-surface0 to-ctp-surface0/80">
+						<div class="flex items-center gap-2 mb-1">
+							<span class="fi fi-${item.country} rounded-sm border border-ctp-overlay0/30"></span>
+							<span class="text-xs text-ctp-overlay0 font-medium">${this.getCountryName(item.country)}</span>
+							<span class="text-xs text-ctp-overlay0/50">~</span>
+							<span class="text-xs text-ctp-overlay0 font-mono">${item.year}</span>
+						</div>
+						<h3 class="font-semibold text-ctp-text text-sm mb-1 line-clamp-1 hover:text-ctp-mauve transition-colors">${item.title}</h3>
+						<p class="text-xs text-ctp-subtext0 line-clamp-2 leading-relaxed">${item.description}</p>
+					</div>
+				</div>
+			</div>
+		`).join("")
+
+		const items = gridContainer.querySelectorAll(".cursor-pointer")
+		items.forEach((item, index) => {
+			const element = item as HTMLElement
+			setTimeout(() => {
+				element.classList.remove("opacity-0", "translate-y-5")
+				element.classList.add("opacity-100", "translate-y-0")
+			}, index * 50)
+		})
 	}
 
 	private renderModal(): void {

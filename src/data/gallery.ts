@@ -74,4 +74,28 @@ export const categories: { id: Category; name: string; icon: string; description
 
 export const galleryItems: GalleryItem[] = [
 	// tba
+	{
+		id: "example-1",
+		title: "Hi",
+		description: "Hey",
+		cdnUrl: "https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png",
+		mediaType: "photo",
+		category: "photos",
+		country: "jp",
+		year: 2025,
+		month: 7,
+		tags: ["cat"],
+	},
+	{
+		id: "example-2",
+		title: "Hiiiiiii",
+		description: "Heyyyyyy",
+		cdnUrl: "https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true",
+		mediaType: "photo",
+		category: "photos",
+		country: "jp",
+		year: 2025,
+		month: 7,
+		tags: ["cat"],
+	}
 ]
