@@ -2,12 +2,86 @@ import "../styles/gallery-style.css"
 import { setupHeaderScroll, setupInteractiveText } from "./main.ts"
 import {
 	categories,
-	visitedCountries
+	visitedCountries,
+	galleryItems,
+	type GalleryItem
 } from "../data/gallery.ts"
 import { createHeader } from "../components/header.ts"
 import { createFooter } from "../components/footer.ts"
 import { ThemeSwitcher } from "../utils/theme-switcher.ts"
 import { Konami } from "../utils/konami.ts"
+
+export interface GalleryState {
+	selectedCountry: string | null
+	selectedCategory: string | null
+	searchQuery: string
+	filteredItems: GalleryItem[]
+	isModalOpen: boolean
+	selectedItem: GalleryItem | null
+}
+
+class GalleryManager {
+	private state: GalleryState = {
+		selectedCountry: null,
+		selectedCategory: null,
+		searchQuery: "",
+		filteredItems: [...galleryItems],
+		isModalOpen: false,
+		selectedItem: null
+	}
+
+	constructor() {
+		this.filterItems()
+	}
+
+	private filterItems(): void {
+		// filtering stuff goes here!!
+		let filtered = [...galleryItems]
+
+		if (this.state.selectedCountry) {
+			filtered = filtered.filter(item => item.country === this.state.selectedCountry)
+		}
+
+		if (this.state.selectedCategory) {
+			filtered = filtered.filter(item => item.category === this.state.selectedCategory)
+		}
+
+		if (this.state.searchQuery.trim()) {
+			const query = this.state.searchQuery.toLowerCase()
+			filtered = filtered.filter(item =>
+				item.title.toLowerCase().includes(query) ||
+				item.description.toLowerCase().includes(query) ||
+				item.tags.some(tag => tag.toLowerCase().includes(query)) ||
+				this.getCountryName(item.country).toLowerCase().includes(query) ||
+				item.year.toString().includes(query)
+			)
+		}
+
+		this.state.filteredItems = filtered
+		this.renderGalleryGrid()
+	}
+
+	private getCountryName(countryCode: string): string {
+		const country = visitedCountries.find(country => country.code === countryCode)
+		return country?.name || countryCode
+	}
+
+	// @ts-ignore shhhhhh
+	private renderGalleryGrid(): void {
+		const gridContainer = document.getElementById("gallery-grid")
+		if (!gridContainer) {
+			return
+		}
+
+		// tba
+	}
+}
+
+declare global {
+	interface Window {
+		galleryManager: GalleryManager
+	}
+}
 
 function createGalleryPage(): void {
 	const app = document.querySelector<HTMLDivElement>("#app")
@@ -75,6 +149,8 @@ function createGalleryPage(): void {
 			</div>
 		</div>
 	`
+
+	window.galleryManager = new GalleryManager()
 
 	setupInteractiveText()
 	window.dispatchEvent(new Event("scroll"))
