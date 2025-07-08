@@ -128,7 +128,23 @@ class GalleryManager {
 		}
 	}
 
-	// @ts-ignore shhhhhh
+	openModal(item: GalleryItem): void {
+		this.state.selectedItem = item
+		this.state.isModalOpen = true
+		this.renderModal()
+		document.body.style.overflow = "hidden"
+	}
+
+	closeModal(): void {
+		this.state.isModalOpen = false
+		this.state.selectedItem = null
+		const modal = document.getElementById("gallery-modal")
+		if (modal) {
+			modal.remove()
+		}
+		document.body.style.overflow = ""
+	}
+
 	private renderGalleryGrid(): void {
 		const gridContainer = document.getElementById("gallery-grid")
 		if (!gridContainer) {
@@ -136,6 +152,24 @@ class GalleryManager {
 		}
 
 		// tba
+	}
+
+	private renderModal(): void {
+		const item = this.state.selectedItem
+		const modal = document.createElement("div")
+
+		if (!item) {
+			return
+		}
+
+		modal.id = "gallery-modal"
+		modal.className = "fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+		modal.onclick = (cursor) => {
+			if (cursor.target === modal) {
+				this.closeModal()
+			}
+		}
+
 	}
 }
 
