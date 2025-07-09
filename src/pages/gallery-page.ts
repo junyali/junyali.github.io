@@ -178,15 +178,15 @@ class GalleryManager {
 					onclick="galleryManager.openModalById('${item.id}')"
 					style="animation-delay: ${index * 50}ms">
 				<div class="relative overflow-hidden rounded-lg bg-ctp-surface0 shadow-lg border border-ctp-surface1/30 transition-all duration-500 ease-out hover:border-ctp-mauve/50">
-					<div class="aspect-square relative group bg-gradient-to-br from-ctp-mauve/10 via-ctp-pink/5 to-ctp-blue/10">
+					<div class="aspect-square relative group overflow-hidden bg-gradient-to-br from-ctp-mauve/10 via-ctp-pink/5 to-ctp-blue/10">
 						${item.mediaType === "video" ? `
-							<div class="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm z-10 group-hover:bg-black/10 transition-all duration-300">
-								<div class="bg-white/20 rounded-full p-3 backdrop-blur-sm">
+							<div class="absolute inset-0 flex items-center justify-center bg-black/20 z-10 group-hover:bg-black/10 transition-all duration-300">
+								<div class="bg-white/20 rounded-full w-12 h-12 flex items-center justify-center">
 									<i class="fas fa-play text-white text-xl"></i>
 								</div>
 							</div>
 						` : ""}
-						<img 	src="${item.cdnUrl}"
+						<img 	src="${item.mediaType === 'video' ? item.cdnUrl.replace('/video/upload/', '/video/upload/q_auto,f_jpg,so_2,c_fill,g_auto/') : item.cdnUrl}"
 								alt="${item.title}"
 								class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
 								loading="lazy" />
