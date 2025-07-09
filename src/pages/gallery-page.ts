@@ -328,7 +328,10 @@ function createGalleryPage(): void {
 						<span class="interactive-text">gallery</span>
 					</h1>
 					<p class="text-ctp-subtext0 text-center mb-8 max-w-2xl mx-auto">
-						explore my travels around the world :3
+						explore my travels around the world :3<br>
+						this page is still a WIP, not all media is uploaded (yet) because it takes time T-T<br>
+						ill get around to uploading soon (maybe..)<br>
+						All Rights Reserved<br>
 					</p>
 					<div class="bg-ctp-surface0/40 backdrop-blur-sm border border-ctp-mauve/20 rounded-xl p-6 mb-8">
 						<div class="flex flex-col lg:flex-row gap-4 mb-4">
