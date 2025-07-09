@@ -53,7 +53,7 @@ class GalleryManager {
 				item.title.toLowerCase().includes(query) ||
 				item.description.toLowerCase().includes(query) ||
 				item.tags.some(tag => tag.toLowerCase().includes(query)) ||
-				this.getCountryName(item.country).toLowerCase().includes(query) ||
+				this.getLocationName(item).toLowerCase().includes(query) ||
 				item.year.toString().includes(query)
 			)
 		}
@@ -63,9 +63,15 @@ class GalleryManager {
 		this.updateResultsCount()
 	}
 
-	private getCountryName(countryCode: string): string {
-		const country = visitedCountries.find(country => country.code === countryCode)
-		return country?.name || countryCode
+	private getLocationName(item: GalleryItem): string {
+		const country = visitedCountries.find(country => country.code === item.country)
+		const countryName = country?.name || item.country
+
+		if (item.city) {
+			return `${item.city}, ${countryName}`
+		}
+
+		return countryName
 	}
 
 	setCountryFilter(countryCode: string | null): void {
@@ -188,7 +194,7 @@ class GalleryManager {
 					<div class="p-3 bg-gradient-to-b from-ctp-surface0 to-ctp-surface0/80">
 						<div class="flex items-center gap-2 mb-1">
 							<span class="fi fi-${item.country} rounded-sm border border-ctp-overlay0/30"></span>
-							<span class="text-xs text-ctp-overlay0 font-medium">${this.getCountryName(item.country)}</span>
+							<span class="text-xs text-ctp-overlay0 font-medium">${this.getLocationName(item)}</span>
 							<span class="text-xs text-ctp-overlay0/50">~</span>
 							<span class="text-xs text-ctp-overlay0 font-mono">${item.year}</span>
 						</div>
@@ -246,7 +252,7 @@ class GalleryManager {
 					<div class="lg:w-1/3 p-6 bg-gradient-to-b from-ctp-base to-ctp-mantle">
 						<div class="flex items-center gap-2 mb-3">
 							<span class="fi fi-${item.country} rounded-sm border border-ctp-overlay0/30"></span>
-							<span class="text-sm text-ctp-mauve font-semibold">${this.getCountryName(item.country)}</span>
+							<span class="text-sm text-ctp-mauve font-semibold">${this.getLocationName(item)}</span>
 						</div>
 						<h2 class="text-2xl font-bold text-ctp-text mb-2 leading-tight">${item.title}</h2>
 						<p class="text-ctp-subtext0 mb-4 leading-relaxed">${item.description}</p>

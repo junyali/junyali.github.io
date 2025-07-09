@@ -38,6 +38,7 @@ export interface GalleryItem {
 	mediaType: MediaType
 	category: Category
 	country: string
+	city?: string
 	year: number
 	month?: number
 	tags: string[]
