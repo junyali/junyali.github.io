@@ -233,7 +233,7 @@ class GalleryManager {
 
 		modal.innerHTML = `
 			<div class="relative bg-ctp-base rounded-xl max-w-6xl max-h-[95vh] overflow-auto shadow-2xl border border-ctp-surface1/50 animate-scale-in">
-				<button class="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full transition-all duration-200 hover:scale-110"
+				<button class="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center bg-black/50 hover:bg-black/70 text-white rounded-full transition-all duration-200 hover:scale-110"
 						onclick="galleryManager.closeModal()">
 					<i class="fas fa-times"></i>
 				</button>
