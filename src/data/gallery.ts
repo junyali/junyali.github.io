@@ -1,3 +1,17 @@
+import { Items as usItems } from "./gallery/us.ts"
+import { Items as engItems } from "./gallery/gb-eng.ts"
+import { Items as sctItems } from "./gallery/gb-sct.ts"
+import { Items as wlsItems } from "./gallery/gb-wls.ts"
+import { Items as frItems } from "./gallery/fr.ts"
+import { Items as deItems } from "./gallery/de.ts"
+import { Items as beItems } from "./gallery/be.ts"
+import { Items as atItems } from "./gallery/at.ts"
+import { Items as chItems } from "./gallery/ch.ts"
+import { Items as egItems } from "./gallery/eg.ts"
+import { Items as saItems } from "./gallery/sa.ts"
+import { Items as cnItems } from "./gallery/cn.ts"
+import { Items as jpItems } from "./gallery/jp.ts"
+
 export type MediaType = "photo" | "video"
 export type Category = "photos" | "transport" | "food"
 
@@ -73,29 +87,17 @@ export const categories: { id: Category; name: string; icon: string; description
 ]
 
 export const galleryItems: GalleryItem[] = [
-	// tba
-	{
-		id: "example-1",
-		title: "Hi",
-		description: "Hey",
-		cdnUrl: "https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png",
-		mediaType: "photo",
-		category: "photos",
-		country: "jp",
-		year: 2025,
-		month: 7,
-		tags: ["cat"],
-	},
-	{
-		id: "example-2",
-		title: "Hiiiiiii",
-		description: "Heyyyyyy",
-		cdnUrl: "https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true",
-		mediaType: "photo",
-		category: "photos",
-		country: "jp",
-		year: 2025,
-		month: 7,
-		tags: ["cat"],
-	}
+	...usItems,
+    ...engItems,
+    ...sctItems,
+    ...wlsItems,
+    ...frItems,
+    ...deItems,
+    ...beItems,
+    ...atItems,
+    ...chItems,
+    ...egItems,
+    ...saItems,
+    ...cnItems,
+    ...jpItems
 ]
